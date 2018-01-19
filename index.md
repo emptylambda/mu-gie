@@ -1,37 +1,47 @@
-## Welcome to GitHub Pages
+## μgie : intemediate verification testing
 
-You can use the [editor on GitHub](https://github.com/emptylambda/mu-gie/edit/master/index.md) to maintain and preview the content for your website in Markdown files.
+We call this approach the robustness testing of verifiers. 
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+μgie inputs a seed [Boogie program](https://github.com/boogie-org/boogie) and generates a collection of mutant programs, each with a slight mutation twist from original seed. These mutations do not introduce any semantical change to the underlying seed but merely explore syntatical variants of the seed, think of it as a "thesaursus" for your Boogie programs. 
 
-### Markdown
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+## Usage 
+TBD 
 
-```markdown
-Syntax highlighted code block
+## Current mutations: 
+1. Swapping: swapping two randomly selected declarations from the seed program; according to Boogie documentation the declaration order should be immaterial! but according to our preliminary study, 50% of the permutations can lead to proof failure. 
+2. Axiomatize function definitions
 
-# Header 1
-## Header 2
-### Header 3
+<!-- Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files. -->
 
-- Bulleted
-- List
+<!-- ### Markdown -->
 
-1. Numbered
-2. List
+<!-- Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for -->
 
-**Bold** and _Italic_ and `Code` text
+<!-- ```markdown -->
+<!-- Syntax highlighted code block -->
 
-[Link](url) and ![Image](src)
-```
+<!-- # Header 1 -->
+<!-- ## Header 2 -->
+<!-- ### Header 3 -->
 
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
+<!-- - Bulleted -->
+<!-- - List -->
 
-### Jekyll Themes
+<!-- 1. Numbered -->
+<!-- 2. List -->
 
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/emptylambda/mu-gie/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
+<!-- **Bold** and _Italic_ and `Code` text -->
 
-### Support or Contact
+<!-- [Link](url) and ![Image](src) -->
+<!-- ``` -->
 
-Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+<!-- For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/). -->
+
+<!-- ### Jekyll Themes -->
+
+<!-- Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/emptylambda/mu-gie/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file. -->
+
+<!-- ### Support or Contact -->
+
+<!-- Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out. -->
