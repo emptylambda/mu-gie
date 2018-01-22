@@ -9,10 +9,42 @@ We call this approach the robustness testing of verifiers.
 TBD 
 
 ## Current mutations: 
-| Mutation Name                   | Mutation Code   | description                                                                                                                                                                                                                                 |
-| --------------                  | --------------- | -----------                                                                                                                                                                                                                                 |
-| Swapping Declarations           | S1              | swapping two randomly selected declarations from the seed program; according to Boogie documentation the declaration order should be immaterial! but according to our preliminary study, 50% of the permutations can lead to proof failure. |
-| Axiomatize function definitions | S2              |                                                                                                                                                                                                                                             |
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="left" />
+
+<col  class="left" />
+
+<col  class="left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="left">Mutation Name</td>
+<td class="left">Mutation Code</td>
+<td class="left">description</td>
+</tr>
+
+<tr>
+<td class="left">--------------</td>
+<td class="left">---------------</td>
+<td class="left">-----------</td>
+</tr>
+
+<tr>
+<td class="left">Swapping Declarations</td>
+<td class="left">S1</td>
+<td class="left">swapping two randomly selected declarations from the seed program; according to Boogie documentation the declaration order should be immaterial! but according to our preliminary study, 50% of the permutations can lead to proof failure.</td>
+</tr>
+
+<tr>
+<td class="left">Axiomatize function definitions</td>
+<td class="left">S2</td>
+<td class="left">&#xa0;</td>
+</tr>
+</tbody>
+</table>
 
 
 ## Benchmark programs: 
