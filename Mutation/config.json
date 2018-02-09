@@ -1,0 +1,23 @@
+{
+    "sourceBoogie":"./test/BoogieProgram/IfSwap.bpl",
+    "mutationRatio":[
+	["S1",0],
+	["S5",0],
+	["S6",0],
+	["S7",0],
+	["G2",0],
+	["G10",0],
+	["L1",0],
+	["L2",0],
+	["L4",0],
+	["L5",0],
+	["L6",0],
+	["L8",1]
+    ],    
+    "mutationLevels":10000,
+    "numberOfMutants":1,
+    "mutationAttempts":10000,
+    "outputToFile":false,
+    "verbose":true,
+    "prefix":"Hello"
+}

@@ -1,0 +1,1017 @@
+
+./Setup.hs,15
+main main1,2
+
+./app/Main.hs,1743
+module Main Main2,3
+data Mutant Mutant27,28
+data Mutant = Mutant Mutant27,28
+    prog prog28,29
+  , sourcePath sourcePath29,30
+  , source source30,31
+  , mutation mutation31,32
+numOfFrags numOfFrags34,35
+numOfFrags numOfFrags35,36
+instance instance37,38
+writeToFile writeToFile49,50
+writeToFile writeToFile50,51
+writeOut writeOut56,57
+writeOut writeOut57,58
+showOut showOut64,65
+showOut showOut65,66
+parseAndTypecheck parseAndTypecheck71,72
+readConfig readConfig79,80
+generateMutations generateMutations85,86
+generateMutations generateMutations86,87
+randomSelect randomSelect94,95
+randomSelect randomSelect95,96
+getMut getMut104,105
+getMut getMut105,106
+xrayLoop xrayLoop150,151
+xrayLoop xrayLoop151,152
+xrayLoop2 xrayLoop2171,172
+xrayLoop2 xrayLoop2172,173
+validName validName202,203
+validName validName203,204
+mainWithConfig mainWithConfig208,209
+main main227,228
+type WeightedList WeightedList233,234
+type WeightedList a a233,234
+jitter jitter235,236
+jitter jitter236,237
+t_config t_config242,243
+prettyPrint prettyPrint245,246
+testJSONRead testJSONRead248,249
+mutationGenLoop mutationGenLoop261,262
+randomName randomName273,274
+randomPick randomPick280,281
+ranPool ranPool287,288
+ranPool ranPool288,289
+type RandStat RandStat298,299
+getRandInRange getRandInRange300,301
+getRandInRange getRandInRange301,302
+getRandName getRandName308,309
+getRandName getRandName309,310
+getRandom getRandom313,314
+getRandom getRandom314,315
+getTwoRandoms getTwoRandoms321,322
+getTwoRandoms getTwoRandoms322,323
+runTwoRandoms runTwoRandoms324,325
+runTwoRandoms runTwoRandoms325,326
+getMutation getMutation332,333
+getMutation getMutation333,334
+
+./app/BMutation.hs,1619
+module Main Main2,3
+data Mutant Mutant24,25
+data Mutant = Mutant Mutant24,25
+    prog prog25,26
+  , sourcePath sourcePath26,27
+  , source source27,28
+  , mutation mutation28,29
+numOfFrags numOfFrags31,32
+numOfFrags numOfFrags32,33
+instance instance34,35
+writeOut writeOut46,47
+writeOut writeOut47,48
+showOut showOut54,55
+showOut showOut55,56
+parseAndTypecheck parseAndTypecheck61,62
+readConfig readConfig69,70
+generateMutations generateMutations75,76
+generateMutations generateMutations76,77
+randomSelect randomSelect83,84
+randomSelect randomSelect84,85
+getMut getMut93,94
+getMut getMut94,95
+xrayLoop xrayLoop121,122
+xrayLoop xrayLoop122,123
+validName validName140,141
+validName validName141,142
+mainWithConfig mainWithConfig146,147
+main main156,157
+type WeightedList WeightedList160,161
+type WeightedList a a160,161
+jitter jitter162,163
+jitter jitter163,164
+t_config t_config169,170
+prettyPrint prettyPrint172,173
+testJSONRead testJSONRead175,176
+mutationGenLoop mutationGenLoop188,189
+randomName randomName200,201
+randomPick randomPick207,208
+ranPool ranPool214,215
+ranPool ranPool215,216
+type RandStat RandStat225,226
+getRandInRange getRandInRange227,228
+getRandInRange getRandInRange228,229
+getRandName getRandName235,236
+getRandName getRandName236,237
+getRandom getRandom240,241
+getRandom getRandom241,242
+getTwoRandoms getTwoRandoms248,249
+getTwoRandoms getTwoRandoms249,250
+runTwoRandoms runTwoRandoms251,252
+runTwoRandoms runTwoRandoms252,253
+getMutation getMutation259,260
+getMutation getMutation260,261
+
+./test/MutationTesting.hs,0
+
+./test/Spec.hs,30
+main main0,1
+main main1,2
+
+./src/Pretty.hs,630
+module Pretty Pretty4,5
+isEmpty isEmpty62,63
+doc1 doc167,68
+hsep hsep81,82
+hsep hsep82,83
+vsep vsep84,85
+vsep vsep85,86
+commaSep commaSep87,88
+commaSep commaSep88,89
+starSep starSep90,91
+starSep starSep91,92
+spaces spaces93,94
+condParens condParens96,97
+option option99,100
+optionMaybe optionMaybe102,103
+errorDoc errorDoc107,108
+auxDoc auxDoc110,111
+internalError internalError113,114
+instance instance115,116
+entryDoc entryDoc118,119
+hMapDoc hMapDoc120,121
+hMapDoc hMapDoc121,122
+vMapDoc vMapDoc123,124
+vMapDoc vMapDoc124,125
+sentence sentence126,127
+sentence sentence127,128
+
+./src/Testing.hs,34
+count count0,1
+count count1,2
+
+./src/Boogie/TypeChecker.hs,5986
+module Boogie.TypeChecker Boogie.TypeChecker3,4
+typeCheckProgram typeCheckProgram58,59
+typeCheckProgram typeCheckProgram59,60
+exprType exprType66,67
+exprType exprType67,68
+thunkType thunkType72,73
+thunkType thunkType73,74
+localContext localContext76,77
+localContext localContext77,78
+nestedContext nestedContext80,81
+nestedContext nestedContext81,82
+globalContext globalContext84,85
+globalContext globalContext85,86
+enterProcedure enterProcedure90,91
+enterProcedure enterProcedure91,92
+data Context Context105,106
+data Context = ContextContext105,106
+    ctxTypeConstructors ctxTypeConstructors109,110
+    ctxTypeSynonyms ctxTypeSynonyms110,111
+    ctxGlobals ctxGlobals111,112
+    ctxConstants ctxConstants112,113
+    ctxFunctions ctxFunctions113,114
+    ctxProcedures ctxProcedures114,115
+    procCallGraphs procCallGraphs116,117
+    currentProc currentProc117,118
+    havocs havocs118,119
+    typeAnnotatedProgram typeAnnotatedProgram119,120
+    ctxTypeVars ctxTypeVars121,122
+    ctxIns ctxIns122,123
+    ctxLocals ctxLocals123,124
+    ctxModifies ctxModifies124,125
+    ctxLabels ctxLabels125,126
+    ctxEncLabels ctxEncLabels126,127
+    ctxTwoState ctxTwoState127,128
+    ctxInLoop ctxInLoop128,129
+    ctxPos ctxPos129,130
+    ctxFreshTVCount ctxFreshTVCount131,132
+emptyContext emptyContext135,136
+setGlobals setGlobals158,159
+setConstants setConstants159,160
+setTypeVars setTypeVars160,161
+setIns setIns161,162
+setLocals setLocals162,163
+setModifies setModifies163,164
+setLabels setLabels164,165
+setTwoState setTwoState165,166
+setInLoop setInLoop166,167
+setPos setPos167,168
+setCurrentProc setCurrentProc168,169
+typeNames typeNames171,172
+globalScope globalScope173,174
+localScope localScope175,176
+mutableVars mutableVars177,178
+allVars allVars179,180
+allNames allNames181,182
+funProcNames funProcNames183,184
+funSig funSig185,186
+procSig procSig187,188
+genFreshTV genFreshTV190,191
+locally locally193,194
+locally locally194,195
+data TypeError TypeError209,210
+data TypeError = TypeError TypeError209,210
+typeErrorDoc typeErrorDoc215,216
+typeErrorsDoc typeErrorsDoc218,219
+throwTypeError throwTypeError221,222
+typeMismatch typeMismatch227,228
+type Typing Typing233,234
+type Typing a a233,234
+checkTypeVar checkTypeVar238,239
+checkTypeVar checkTypeVar239,240
+checkType checkType249,250
+checkType checkType250,251
+resolve resolve279,280
+resolve resolve280,281
+  | name `elem`elem283,284
+withFreshTV withFreshTV290,291
+withFreshTV withFreshTV291,292
+pInstance pInstance299,300
+pInstance pInstance300,301
+checkExpression checkExpression320,321
+checkExpression checkExpression321,322
+checkVar checkVar337,338
+checkVar checkVar338,339
+checkApplication checkApplication344,345
+checkApplication checkApplication345,346
+checkMapSelection checkMapSelection356,357
+checkMapSelection checkMapSelection357,358
+checkMapUpdate checkMapUpdate374,375
+checkMapUpdate checkMapUpdate375,376
+checkOld checkOld394,395
+checkOld checkOld395,396
+checkIfExpression checkIfExpression403,404
+checkIfExpression checkIfExpression404,405
+checkCoercion checkCoercion412,413
+checkCoercion checkCoercion413,414
+checkUnaryExpression checkUnaryExpression419,420
+checkUnaryExpression checkUnaryExpression420,421
+checkBinaryExpression checkBinaryExpression426,427
+checkBinaryExpression checkBinaryExpression427,428
+checkQuantified checkQuantified452,453
+checkQuantified checkQuantified453,454
+checkStatement checkStatement475,476
+checkStatement checkStatement476,477
+checkAssign checkAssign491,492
+checkAssign checkAssign492,493
+checkCall checkCall499,500
+checkCall checkCall500,501
+checkIf checkIf529,530
+checkIf checkIf530,531
+checkWhile checkWhile539,540
+checkWhile checkWhile540,541
+checkGoto checkGoto548,549
+checkGoto checkGoto549,550
+checkSimpleBreak checkSimpleBreak556,557
+checkSimpleBreak checkSimpleBreak557,558
+checkLabelBreak checkLabelBreak563,564
+checkLabelBreak checkLabelBreak564,565
+collectLabels collectLabels574,575
+collectLabels collectLabels575,576
+checkBlock checkBlock595,596
+checkBlock checkBlock596,597
+collectTypes collectTypes605,606
+collectTypes collectTypes606,607
+checkTypeDecl checkTypeDecl613,614
+checkTypeDecl checkTypeDecl614,615
+checkTypeSynonyms checkTypeSynonyms623,624
+checkTypeSynonyms checkTypeSynonyms624,625
+checkCycles checkCycles636,637
+checkCycles checkCycles637,638
+checkSignatures checkSignatures657,658
+checkSignatures checkSignatures658,659
+checkIdType checkIdType669,670
+checkIdType checkIdType670,671
+checkFunctionSignature checkFunctionSignature679,680
+checkFunctionSignature checkFunctionSignature680,681
+checkProcSignature checkProcSignature704,705
+checkProcSignature checkProcSignature705,706
+checkBodies checkBodies730,731
+checkBodies checkBodies731,732
+checkCallDep checkCallDep743,744
+checkCallDep checkCallDep744,745
+findCallInBody findCallInBody756,757
+findCallInBody findCallInBody757,758
+findInSt findInSt760,761
+findCalls findCalls762,763
+findCalls findCalls763,764
+checkWhere checkWhere770,771
+checkWhere checkWhere771,772
+checkParentInfo checkParentInfo777,778
+checkParentInfo checkParentInfo778,779
+checkAxiom checkAxiom793,794
+checkAxiom checkAxiom794,795
+checkFunction checkFunction799,800
+checkFunction checkFunction800,801
+checkProcedure checkProcedure811,812
+checkProcedure checkProcedure812,813
+checkBody checkBody832,833
+checkBody checkBody833,834
+checkImplementation checkImplementation840,841
+checkImplementation checkImplementation841,842
+checkProgram checkProgram869,870
+checkProgram checkProgram870,871
+checkMatch checkMatch885,886
+checkMatch checkMatch886,887
+checkLefts checkLefts894,895
+checkLefts checkLefts895,896
+checkHavocLefts checkHavocLefts912,913
+checkHavocLefts checkHavocLefts913,914
+
+./src/Boogie/AST.hs,6971
+module Boogie.AST Boogie.AST4,5
+data Program Program17,18
+data Program = Program Program17,18
+   declarations declarations18,19
+   , comments comments19,20
+data GenType GenType26,27
+  BoolType BoolType27,28
+  BoolType |                                -- --27,28
+  IntType |                                 -- --28,29
+  MapType [fv] [GenType fv] (GenType fv) |  -- --29,30
+type Type Type34,35
+deBrujn deBrujn39,40
+deBrujn deBrujn40,41
+instance instance55,56
+data UnOp UnOp64,65
+data UnOp = Neg Neg64,65
+data UnOp = Neg | NotNot64,65
+data BinOp BinOp68,69
+data BinOp = Plus Plus68,69
+data BinOp = Plus | Minus Minus68,69
+data BinOp = Plus | Minus | Times Times68,69
+data BinOp = Plus | Minus | Times | Div Div68,69
+data BinOp = Plus | Minus | Times | Div | Mod Mod68,69
+data BinOp = Plus | Minus | Times | Div | Mod | And And68,69
+data BinOp = Plus | Minus | Times | Div | Mod | And | Or Or68,69
+data BinOp = Plus | Minus | Times | Div | Mod | And | Or | Implies Implies68,69
+data BinOp = Plus | Minus | Times | Div | Mod | And | Or | Implies | Explies Explies68,69
+data BinOp = Plus | Minus | Times | Div | Mod | And | Or | Implies | Explies | Equiv Equiv68,69
+data BinOp = Plus | Minus | Times | Div | Mod | And | Or | Implies | Explies | Equiv | Eq Eq68,69
+data BinOp = Plus | Minus | Times | Div | Mod | And | Or | Implies | Explies | Equiv | Eq | Neq Neq68,69
+data BinOp = Plus | Minus | Times | Div | Mod | And | Or | Implies | Explies | Equiv | Eq | Neq | Lc Lc68,69
+data BinOp = Plus | Minus | Times | Div | Mod | And | Or | Implies | Explies | Equiv | Eq | Neq | Lc | Ls Ls68,69
+data BinOp = Plus | Minus | Times | Div | Mod | And | Or | Implies | Explies | Equiv | Eq | Neq | Lc | Ls | Leq Leq68,69
+data BinOp = Plus | Minus | Times | Div | Mod | And | Or | Implies | Explies | Equiv | Eq | Neq | Lc | Ls | Leq | Gt Gt68,69
+data BinOp = Plus | Minus | Times | Div | Mod | And | Or | Implies | Explies | Equiv | Eq | Neq | Lc | Ls | Leq | Gt | GeqGeq68,69
+data QOp QOp72,73
+data QOp = Forall Forall72,73
+data QOp = Forall | Exists Exists72,73
+data QOp = Forall | Exists | LambdaLambda72,73
+type Expression Expression76,77
+type Annotation Annotation78,79
+data BareExpression BareExpression81,82
+  Literal Literal82,83
+  Var Var83,84
+  Var Id |                                        -- --83,84
+  TypedVar Id Type |                              -- --84,85
+  Logical Type Ref |                              -- --85,86
+  Application Id [Expression] |                   -- --86,87
+  MapSelection Expression [Expression] |          -- --87,88
+  MapUpdate Expression [Expression] Expression |  -- --88,89
+  IfExpr IfExpr90,91
+  IfExpr Expression Expression Expression |       -- --90,91
+  UnaryExpression UnaryExpression92,93
+  BinaryExpression BinaryExpression93,94
+  Quantified Quantified94,95
+mapSelectExpr mapSelectExpr98,99
+ff ff100,101
+tt tt101,102
+numeral numeral102,103
+isLiteral isLiteral104,105
+fromLiteral fromLiteral107,108
+data WildcardExpression WildcardExpression111,112
+data WildcardExpression = Wildcard Wildcard111,112
+data WildcardExpression = Wildcard | Expr Expr111,112
+type Thunk Thunk115,116
+type Statement Statement120,121
+data BareStatement BareStatement123,124
+  Predicate Predicate124,125
+  Predicate [Attribute] SpecClause |                      -- --124,125
+  Havoc [Id] |                                            -- --125,126
+  Assign [(Id , [[Expression]])] [Expression] |           -- --126,127
+  Call [Id] Id [Expression] |                             -- --127,128
+  If WildcardExpression Block (Maybe Block) |             -- --128,129
+  While WildcardExpression [SpecClause] Block |           -- --129,130
+  Break (Maybe Id) |                                      -- --130,131
+  Goto Goto132,133
+  Goto [Id] |                                             -- --132,133
+type LStatement LStatement138,139
+type BareLStatement BareLStatement141,142
+type Block Block144,145
+singletonBlock singletonBlock147,148
+type Body Body150,151
+type BasicBlock BasicBlock155,156
+type BasicBody BasicBody160,161
+data SpecType SpecType165,166
+data SpecType = Inline Inline165,166
+data SpecType = Inline | Precondition Precondition165,166
+data SpecType = Inline | Precondition | Postcondition Postcondition165,166
+data SpecType = Inline | Precondition | Postcondition | LoopInvariant LoopInvariant165,166
+data SpecType = Inline | Precondition | Postcondition | LoopInvariant | Where Where165,166
+data SpecType = Inline | Precondition | Postcondition | LoopInvariant | Where | AxiomAxiom165,166
+data SpecClause SpecClause169,170
+data SpecClause = SpecClause SpecClause169,170
+  specType specType170,171
+  specFree specFree171,172
+  specExpr specExpr172,173
+data Contract Contract176,177
+  Requires Requires177,178
+  Requires Bool Expression |                -- --177,178
+  Modifies Bool [Id] |                      -- --178,179
+type Decl Decl185,186
+data BareDecl BareDecl188,189
+  TypeDecl TypeDecl189,190
+  ConstantDecl ConstantDecl190,191
+  ConstantDecl Bool [Id] Type ParentInfo Bool |                                -- --190,191
+  FunctionDecl [Attribute] Id [Id] [FArg] FArg (Maybe Expression) |            -- --191,192
+  VarDecl VarDecl193,194
+  ProcedureDecl ProcedureDecl194,195
+  ProcedureDecl      Id [Id] [IdTypeWhere] [IdTypeWhere] [Contract] (Maybe Body) |  -- --194,195
+type Ref Ref201,202
+type MapRepr MapRepr204,205
+emptyMap emptyMap207,208
+data Value Value210,211
+data Value = IntValue IntValue210,211
+data Value = IntValue Integer |  -- --210,211
+  BoolValue Bool |               -- --211,212
+  CustomValue Type Ref |         -- --212,213
+valueType valueType217,218
+valueType valueType218,219
+valueFromInteger valueFromInteger224,225
+valueFromInteger valueFromInteger225,226
+data AttrValue AttrValue236,237
+data AttrValue = EAttr EAttr236,237
+data AttrValue = EAttr Expression | SAttr SAttr236,237
+data Attribute Attribute240,241
+data Attribute = Attribute Attribute240,241
+  aTag aTag241,242
+  aValues aValues242,243
+type Id Id248,249
+data NewType NewType251,252
+data NewType = NewType NewType251,252
+  tId tId252,253
+  tArgs tArgs253,254
+  tValue tValue254,255
+type IdType IdType259,260
+data IdTypeWhere IdTypeWhere262,263
+data IdTypeWhere = IdTypeWhere IdTypeWhere262,263
+  itwId itwId263,264
+  itwType itwType264,265
+  itwWhere itwWhere265,266
+noWhere noWhere269,270
+noType noType272,273
+type FArg FArg275,276
+dummyFArg dummyFArg278,279
+type ParentEdge ParentEdge281,282
+type ParentInfo ParentInfo285,286
+stripToStatement stripToStatement288,289
+stripToStatement stripToStatement289,290
+bareSt2Block bareSt2Block291,292
+bareSt2Block bareSt2Block292,293
+block2ListStmts block2ListStmts294,295
+block2ListStmts block2ListStmts295,296
+
+./src/Boogie/Position.hs,641
+module Boogie.PositionBoogie.Position2,3
+data Pos Pos28,29
+data Pos a = Pos Pos28,29
+      position position29,30
+      node node30,31
+instance instance33,34
+samePos samePos36,37
+attachPos attachPos48,49
+attachPos attachPos49,50
+noPos noPos52,53
+gen gen55,56
+attachPosM attachPosM57,58
+attachPosM attachPosM58,59
+attachPosBefore attachPosBefore61,62
+attachPosBefore attachPosBefore62,63
+inheritPos inheritPos65,66
+inheritPos inheritPos66,67
+inheritPos2 inheritPos269,70
+inheritPos2 inheritPos270,71
+lineNo lineNo74,75
+lineNo lineNo75,76
+maintainPos maintainPos78,79
+maintainPos maintainPos79,80
+
+./src/Boogie/Parser.hs,3421
+module Boogie.Parser Boogie.Parser1,2
+program program24,25
+program program25,26
+opNames opNames33,34
+opNames opNames34,35
+opStart opStart36,37
+opStart opStart37,38
+opLetter opLetter39,40
+opLetter opLetter40,41
+boogieDef boogieDef42,43
+boogieDef boogieDef43,44
+lexer lexer56,57
+lexer lexer57,58
+identifier identifier59,60
+reserved reserved60,61
+reservedOp reservedOp61,62
+charLiteral charLiteral62,63
+stringLiteral stringLiteral63,64
+natural natural64,65
+integer integer65,66
+symbol symbol66,67
+whiteSpace whiteSpace67,68
+angles angles68,69
+brackets brackets69,70
+parens parens70,71
+braces braces71,72
+semi semi72,73
+comma comma73,74
+commaSep commaSep74,75
+commaSep1 commaSep175,76
+typeAtom typeAtom79,80
+typeAtom typeAtom80,81
+typeArgs typeArgs88,89
+typeArgs typeArgs89,90
+mapType mapType91,92
+mapType mapType92,93
+typeCtorArgs typeCtorArgs98,99
+typeCtorArgs typeCtorArgs99,100
+type_ type_114,115
+type_ type_115,116
+qop qop126,127
+qop qop127,128
+atom atom131,132
+atom atom132,133
+arrayExpression arrayExpression171,172
+arrayExpression arrayExpression172,173
+coercionExpression coercionExpression184,185
+coercionExpression coercionExpression185,186
+expression expression196,197
+expression expression197,198
+table table199,200
+wildcardExpression wildcardExpression215,216
+wildcardExpression wildcardExpression216,217
+lhs lhs220,221
+lhs lhs221,222
+assign assign226,227
+assign assign227,228
+call call234,235
+call call235,236
+ifStatement ifStatement260,261
+ifStatement ifStatement261,262
+whileStatement whileStatement272,273
+whileStatement whileStatement273,274
+statement statement288,289
+statement statement289,290
+label label303,304
+label label304,305
+lStatement lStatement310,311
+lStatement lStatement311,312
+statementList statementList316,317
+statementList statementList317,318
+block block326,327
+block block327,328
+newType newType331,332
+newType newType332,333
+typeDecl typeDecl338,339
+typeDecl typeDecl339,340
+parentEdge parentEdge346,347
+parentEdge parentEdge347,348
+constantDecl constantDecl352,353
+constantDecl constantDecl353,354
+functionDecl functionDecl363,364
+functionDecl functionDecl364,365
+axiomDecl axiomDecl388,389
+axiomDecl axiomDecl389,390
+varList varList396,397
+varList varList397,398
+varDecl varDecl404,405
+varDecl varDecl405,406
+body body407,408
+body body408,409
+procDecl procDecl413,414
+procDecl procDecl414,415
+implDecl implDecl432,433
+implDecl implDecl433,434
+decl decl444,445
+decl decl445,446
+spec spec457,458
+spec spec458,459
+hasTrigger hasTrigger479,480
+hasTrigger hasTrigger480,481
+hasKeyword hasKeyword482,483
+hasKeyword hasKeyword483,484
+idsType idsType485,486
+idsType idsType486,487
+ungroup ungroup492,493
+ungroup ungroup493,494
+idsTypeWhere idsTypeWhere495,496
+idsTypeWhere idsTypeWhere496,497
+ungroupWhere ungroupWhere502,503
+ungroupWhere ungroupWhere503,504
+trigAttr trigAttr506,507
+trigAttr trigAttr507,508
+trigAttr' trigAttr'512,513
+trigAttr' trigAttr'513,514
+trigger trigger519,520
+trigger trigger520,521
+triggerExp triggerExp524,525
+triggerExp triggerExp525,526
+attribute attribute533,534
+attribute attribute534,535
+attribute' attribute'541,542
+attribute' attribute'542,543
+attribute'' attribute''550,551
+attribute'' attribute''551,552
+
+./src/Boogie/MutationContext.hs,600
+module Boogie.MutationContext Boogie.MutationContext2,3
+buildMuContext buildMuContext11,12
+buildMuContext buildMuContext12,13
+data MuContext MuContext14,15
+data MuContext = MuContextMuContext14,15
+    gVars gVars16,17
+    gAxioms gAxioms17,18
+    gFuncs gFuncs18,19
+    localVars localVars19,20
+emptyC emptyC23,24
+emptyC emptyC24,25
+type Mutating Mutating32,33
+type Mutating a a32,33
+readProgram readProgram34,35
+readProgram readProgram35,36
+getGlobals getGlobals39,40
+getGlobals getGlobals40,41
+insertNewGVar insertNewGVar46,47
+insertNewGVar insertNewGVar47,48
+
+./src/Boogie/Paths.hs,814
+module Boogie.Paths Boogie.Paths3,4
+data Proc Proc14,15
+data Proc = Proc Proc14,15
+  pid pid15,16
+  implementations implementations18,19
+  modifies modifies19,20
+  requires requires20,21
+  ensures ensures21,22
+data Env Env24,25
+data Env = Env Env24,25
+  ctx ctx25,26
+  procs procs26,27
+  globalDecls globalDecls28,29
+addGlobal addGlobal31,32
+addProc addProc33,34
+type P P35,36
+type P a a35,36
+emptyEnv emptyEnv37,38
+buildProcs buildProcs39,40
+buildProcs buildProcs40,41
+buildGlobals buildGlobals46,47
+buildGlobals buildGlobals47,48
+appendLocals appendLocals69,70
+appendLocals appendLocals70,71
+split split72,73
+split split73,74
+data Woogie Woogie92,93
+data Woogie = W W92,93
+    base base93,94
+  , proofObs proofObs94,95
+woogieConcat woogieConcat97,98
+
+./src/Boogie/Tokens.hs,495
+module Boogie.Tokens Boogie.Tokens1,2
+keywords keywords8,9
+keywords keywords9,10
+unOpTokens unOpTokens17,18
+unOpTokens unOpTokens18,19
+instance instance22,23
+binOpTokens binOpTokens26,27
+binOpTokens binOpTokens27,28
+qOpTokens qOpTokens50,51
+qOpTokens qOpTokens51,52
+otherOps otherOps60,61
+otherOps otherOps61,62
+identifierChars identifierChars64,65
+commentStart commentStart66,67
+commentEnd commentEnd68,69
+commentLine commentLine70,71
+nonIdChar nonIdChar73,74
+
+./src/Boogie/ErrorAccum.hs,562
+module Boogie.ErrorAccum Boogie.ErrorAccum2,3
+newtype ErrorAccumT ErrorAccumT11,12
+newtype ErrorAccumT e m a = ErrorAccumT ErrorAccumT11,12
+newtype ErrorAccumT e m a = ErrorAccumT { runErrorAccumT runErrorAccumT11,12
+instance instance14,15
+accum accum39,40
+accum accum40,41
+report report46,47
+report report47,48
+mapAccum mapAccum54,55
+mapAccum mapAccum55,56
+mapAccumA_ mapAccumA_61,62
+mapAccumA_ mapAccumA_62,63
+mapAccum_ mapAccum_67,68
+mapAccum_ mapAccum_68,69
+zipWithAccum_ zipWithAccum_73,74
+zipWithAccum_ zipWithAccum_74,75
+
+./src/Boogie/Util.hs,3582
+module Boogie.Util Boogie.Util1,2
+type TypeBinding TypeBinding88,89
+typeSubst typeSubst93,94
+typeSubst typeSubst94,95
+renameTypeVars renameTypeVars105,106
+renameTypeVars renameTypeVars106,107
+isFreeIn isFreeIn113,114
+x `isFreeIn`isFreeIn114,115
+fromTVNames fromTVNames120,121
+fromTVNames fromTVNames121,122
+freshTVName freshTVName124,125
+isTypeVar isTypeVar127,128
+isTypeVar isTypeVar128,129
+unifier unifier131,132
+unifier unifier132,133
+forallUnifier forallUnifier156,157
+forallUnifier forallUnifier157,158
+freeVarsTwoState freeVarsTwoState177,178
+freeVarsTwoState freeVarsTwoState178,179
+freeVars freeVars193,194
+freeOldVars freeOldVars195,196
+type VarBinding VarBinding198,199
+exprSubst exprSubst202,203
+exprSubst exprSubst203,204
+exprSubst' exprSubst'205,206
+paramBinding paramBinding222,223
+paramBinding paramBinding223,224
+paramSubst paramSubst232,233
+paramSubst paramSubst233,234
+mapRefs mapRefs238,239
+mapRefs mapRefs239,240
+refSelections refSelections255,256
+refSelections refSelections256,257
+applications applications273,274
+applications applications274,275
+removeBoundClashes removeBoundClashes288,289
+removeBoundClashes removeBoundClashes289,290
+preconditions preconditions312,313
+preconditions preconditions313,314
+postconditions postconditions319,320
+postconditions postconditions320,321
+modifies modifies326,327
+modifies modifies327,328
+assumePreconditions assumePreconditions333,334
+assumePreconditions assumePreconditions334,335
+assumePostconditions assumePostconditions340,341
+assumePostconditions assumePostconditions341,342
+data PSig PSig349,350
+data PSig = PSig PSig349,350
+    psigName psigName350,351
+    psigTypeVars psigTypeVars351,352
+    psigArgs psigArgs352,353
+    psigRets psigRets353,354
+    psigContracts psigContracts354,355
+instance instance357,358
+psigParams psigParams364,365
+psigArgTypes psigArgTypes366,367
+psigRetTypes psigRetTypes368,369
+psigType psigType370,371
+psigModifies psigModifies372,373
+psigRequires psigRequires374,375
+psigEnsures psigEnsures376,377
+data PDef PDef380,381
+data PDef = PDef PDef380,381
+    pdefIns pdefIns381,382
+    pdefOuts pdefOuts382,383
+    pdefParamsRenamed pdefParamsRenamed383,384
+    pdefBody pdefBody384,385
+    pdefPos pdefPos385,386
+num num390,391
+eneg eneg391,392
+enot enot392,393
+e1 e1393,394
+assume assume418,419
+conjunction conjunction420,421
+disjunction disjunction421,422
+guardWith guardWith422,423
+nullaryType nullaryType427,428
+noneType noneType430,431
+anyType anyType433,434
+tupleType tupleType436,437
+functionFrefix functionFrefix438,439
+functionConst functionConst442,443
+functionExpr functionExpr444,445
+functionFromConst functionFromConst447,448
+removeClashesWith removeClashesWith455,456
+removeClashesWith removeClashesWith456,457
+fromRight fromRight467,468
+fromRight fromRight468,469
+maybe2 maybe2471,472
+maybe2 maybe2472,473
+deleteAll deleteAll475,476
+deleteAll deleteAll476,477
+restrictDomain restrictDomain479,480
+restrictDomain restrictDomain480,481
+removeDomain removeDomain483,484
+removeDomain removeDomain484,485
+partitionDomain partitionDomain487,488
+partitionDomain partitionDomain488,489
+mapItwType mapItwType490,491
+anyM anyM493,494
+anyM anyM494,495
+allM allM497,498
+allM allM498,499
+findM findM501,502
+findM findM502,503
+changeState changeState508,509
+changeState changeState509,510
+withLocalState withLocalState517,518
+withLocalState withLocalState518,519
+
+./src/Boogie/PrettyAST.hs,1033
+module Boogie.PrettyAST Boogie.PrettyAST4,5
+instance instance20,21
+power power49,50
+power power50,51
+  | op `elem`elem62,63
+exprDoc exprDoc70,71
+exprDoc exprDoc71,72
+exprDocAt exprDocAt74,75
+exprDocAt exprDocAt75,76
+statementDoc statementDoc105,106
+statementDoc statementDoc106,107
+blockDoc blockDoc142,143
+bracedBlockDoc bracedBlockDoc146,147
+bodyDoc bodyDoc150,151
+transformedBlockDoc transformedBlockDoc154,155
+labelDoc labelDoc158,159
+specpretty specpretty162,163
+specpretty specpretty163,164
+specClauseDoc specClauseDoc167,168
+typeDeclDoc typeDeclDoc182,183
+constantDoc constantDoc189,190
+functionDoc functionDoc201,202
+varDeclDoc varDeclDoc215,216
+procedureDoc procedureDoc220,221
+implementationDoc implementationDoc245,246
+refDoc refDoc257,258
+refDoc refDoc258,259
+logDoc logDoc261,262
+logDoc logDoc262,263
+defaultIndent defaultIndent283,284
+nestDef nestDef285,286
+typeArgsDoc typeArgsDoc288,289
+idpretty idpretty291,292
+idTypeWhereDoc idTypeWhereDoc294,295
+
+./src/Renaming.hs,1251
+replaceIDExpr replaceIDExpr20,21
+replaceIDExpr' replaceIDExpr'22,23
+replaceIDExpr' replaceIDExpr'23,24
+produceSchema produceSchema34,35
+produceSchema produceSchema35,36
+programReplaceIds programReplaceIds40,41
+programReplaceIds programReplaceIds41,42
+type Renaming Renaming49,50
+gVarReplace gVarReplace51,52
+gVarReplace gVarReplace52,53
+gconstReplace gconstReplace55,56
+gconstReplace gconstReplace56,57
+f f59,60
+f f60,61
+renameGVar renameGVar65,66
+renameGVar renameGVar66,67
+transfromProcedure transfromProcedure80,81
+transfromProcedure transfromProcedure81,82
+renameLabel renameLabel87,88
+renameLabel renameLabel88,89
+renameLabelS renameLabelS92,93
+renameLabelS renameLabelS93,94
+renameLVar renameLVar97,98
+renameLVar renameLVar98,99
+replaceHavocID replaceHavocID101,102
+replaceHavocID replaceHavocID102,103
+replaceAssignID replaceAssignID105,106
+replaceAssignID replaceAssignID106,107
+renameExpression renameExpression112,113
+renameExpression renameExpression113,114
+renameBareExpression renameBareExpression116,117
+renameBareExpression renameBareExpression117,118
+renameID renameID147,148
+renameID renameID148,149
+renameIdtws renameIdtws152,153
+renameIdtws renameIdtws153,154
+
+./src/Transformations.hs,2722
+module Transformations Transformations8,9
+data Trans Trans20,21
+data Trans = Trans Trans20,21
+  transName transName21,22
+  trans trans22,23
+instance instance25,26
+s1 s132,33
+s5 s535,36
+s6 s636,37
+s7 s737,38
+g2 g238,39
+g10 g1039,40
+swapDecl swapDecl56,57
+swapDecl swapDecl57,58
+decoupleProcedures decoupleProcedures65,66
+decoupleProcedures decoupleProcedures66,67
+getHeader getHeader74,75
+getHeader getHeader76,77
+dropContract dropContract82,83
+dropContract dropContract84,85
+createImp createImp86,87
+createImp createImp87,88
+splitProgram splitProgram91,92
+splitProgram splitProgram92,93
+isolatedDecl isolatedDecl95,96
+isolatedDecl isolatedDecl96,97
+addAxiomToPrecond addAxiomToPrecond104,105
+addAxiomToPrecond addAxiomToPrecond105,106
+addAxiom addAxiom113,114
+addAxiom addAxiom116,117
+addTruth addTruth122,123
+addTruth addTruth123,124
+removeTriggers removeTriggers132,133
+removeTriggers removeTriggers133,134
+reTriggers reTriggers139,140
+reTriggers reTriggers140,141
+whichBody whichBody146,147
+whichBody whichBody147,148
+l1 l1154,155
+l2 l2157,158
+l4 l4159,160
+l5 l5160,161
+l6 l6161,162
+l8 l8162,163
+swapLocalVar swapLocalVar165,166
+swapLocalVar swapLocalVar166,167
+multiLocalDecl multiLocalDecl174,175
+multiLocalDecl multiLocalDecl175,176
+andPreconds andPreconds180,181
+andPreconds andPreconds181,182
+andPres' andPres'185,186
+andPres' andPres'186,187
+andPostconds andPostconds193,194
+andPostconds andPostconds194,195
+andPost' andPost'198,199
+andPost' andPost'199,200
+swapContracts swapContracts207,208
+swapContracts swapContracts208,209
+joinModifies joinModifies216,217
+joinModifies joinModifies217,218
+joinMods' joinMods'221,222
+joinMods' joinMods'222,223
+splitMods splitMods229,230
+splitMods splitMods230,231
+flipIfExp flipIfExp237,238
+flipIfExp flipIfExp238,239
+flipIfStm flipIfStm242,243
+flipIfStm flipIfStm243,244
+flipIfinBody flipIfinBody251,252
+flipIfinBody flipIfinBody252,253
+renameGenTyp renameGenTyp256,257
+renameGenTyp renameGenTyp257,258
+inlineLocalDecls inlineLocalDecls267,268
+inlineLocalDecls inlineLocalDecls268,269
+swapElementsAt swapElementsAt277,278
+swapElementsAt swapElementsAt278,279
+sortPairInts sortPairInts290,291
+sortPairInts sortPairInts291,292
+hasBody hasBody295,296
+hasBody hasBody296,297
+zipUp zipUp301,302
+zipUp zipUp302,303
+hasConnjuction hasConnjuction309,310
+hasConnjuction hasConnjuction310,311
+allGlobalIDs allGlobalIDs317,318
+allGlobalIDs allGlobalIDs318,319
+allGConstants allGConstants326,327
+allTypes allTypes327,328
+allFunctions allFunctions328,329
+allGVars allGVars329,330
+allProcs allProcs330,331
+
+./src/Interface.hs,405
+module Interface Interface2,3
+data Config Config7,8
+data Config = Config Config7,8
+    sourceBoogie sourceBoogie8,9
+  , mutationRatio mutationRatio9,10
+  , mutationLevels mutationLevels10,11
+  , numberOfMutants numberOfMutants11,12
+  , mutationAttempts mutationAttempts12,13
+  , outputToFile outputToFile13,14
+  , verbose verbose14,15
+  , prefix prefix15,16
+instance instance18,19

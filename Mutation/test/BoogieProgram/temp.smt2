@@ -1,0 +1,51 @@
+(set-option :print-success false)
+(set-info :smt-lib-version 2.0)
+(set-option :AUTO_CONFIG false)
+(set-option :pp.bv_literals false)
+(set-option :MODEL.V2 true)
+(set-option :smt.PHASE_SELECTION 0)
+(set-option :smt.RESTART_STRATEGY 0)
+(set-option :smt.RESTART_FACTOR |1.5|)
+(set-option :smt.ARITH.RANDOM_INITIAL_VALUE true)
+(set-option :smt.CASE_SPLIT 3)
+(set-option :smt.DELAY_UNITS true)
+(set-option :NNF.SK_HACK true)
+(set-option :smt.MBQI false)
+(set-option :smt.QI.EAGER_THRESHOLD 100)
+(set-option :TYPE_CHECK true)
+(set-option :smt.BV.REFLECT true)
+(set-option :TIMEOUT 10000)
+(set-option :fixedpoint.TIMEOUT 10000)
+; done setting options
+
+
+(declare-fun tickleBool (Bool) Bool)
+(assert (and (tickleBool true) (tickleBool false)))
+(declare-fun hash (Int) Int)
+(declare-sort |T@[Int]Int| 0)
+(declare-fun |Select_[$int]$int| (|T@[Int]Int| Int) Int)
+(declare-fun a () |T@[Int]Int|)
+(assert (forall ((x Int) (y Int) ) (!  (=> (> x y) (> (hash x) y))
+ :qid |livebpl.8:15|
+ :skolemid |0|
+)))
+(assert (forall ((j Int) (k Int) ) (!  (=> (and (<= 0 j) (< j k)) (< (|Select_[$int]$int| a j) (|Select_[$int]$int| a k)))
+ :qid |livebpl.13:15|
+ :skolemid |1|
+ :pattern ( (|Select_[$int]$int| a j) (|Select_[$int]$int| a k))
+)))
+(declare-fun %lbl%+0 () Bool)
+(declare-fun o@0 () Int)
+(declare-fun i () Int)
+(declare-fun %lbl%@1 () Bool)
+(declare-fun %lbl%+2 () Bool)
+(push 1)
+(set-info :boogie-vc-id harray)
+(assert (not
+(let ((anon0_correct  (=> (! (and %lbl%+0 true) :lblpos +0) (=> (= o@0 (hash (|Select_[$int]$int| a (+ i 1)))) (! (or %lbl%@1 (> o@0 (|Select_[$int]$int| a i))) :lblneg @1)))))
+(let ((PreconditionGeneratedEntry_correct  (=> (! (and %lbl%+2 true) :lblpos +2) (=> (>= i 0) anon0_correct))))
+PreconditionGeneratedEntry_correct))
+))
+(check-sat)
+(pop 1)
+; Valid

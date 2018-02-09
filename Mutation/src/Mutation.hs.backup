@@ -1,0 +1,246 @@
+module Mutations where
+
+import Control.Lens
+import Boogie.AST
+import Boogie.Position
+import Data.List
+import System.Random
+import Boogie.MutationContext
+import Data.Maybe
+
+
+{-
+   MISC: Expression mods 
+-}
+-- | `andTrue` append a TRUE to expression (without typechecking)
+andTrue :: Expression -> Expression
+andTrue (Pos p e) = Pos p $ BinaryExpression And (Pos p e) (gen tt)
+
+getAxiom :: [Decl] -> Expression
+getAxiom _ = gen tt 
+
+-- requireAxiom :: Expression -> Decl -> Decl ?? what would be the right type sig for this guy??
+requireAxiom axiomE (id, _targs, _formals, _rets, contracts, _body) =
+  (id, _targs, _formals, _rets, (addRequire contracts axiomE), _body)
+
+
+addRequire :: [Contract] -> Expression -> [Contract]
+addRequire c e = c ++ [Requires False e]
+
+addEnsure :: [Contract] -> Expression -> [Contract]
+addEnsure c e = c ++ [Ensures False e]
+
+
+
+
+-- the "apply" becomes quite important
+-- case mutation ?= program 
+
+type Mutation = StdGen -> MuContext -> Program -> Maybe Program
+
+(?=) :: Program -> Mutation -> Program
+(?=) = undefined 
+-- fromMaybe :: a -> Maybe a -> a
+
+{-
+
+"S"tructural Mutaitons
+* Swap any two declarations;
+* Rename a global identifier;
+* Add a type synonym of a used type, and replace the used type with the synonym;
+* Split a function definition into declaration and axiomatic definition;
+* Split a procedure definition into declaration and implementation;
+* [MultiFile] Move any declaration into a separate file (and call Boogie on both files);
+* Add any axiom to an implementation's precondition.
+
+-}
+swapDeclR :: Mutation
+swapDeclR = undefined
+
+renameGlobalIdR :: Mutation
+renameGlobalIdR = undefined 
+
+addTypeSynonR :: Mutation
+addTypeSynonR = undefined
+
+-- | "splitFuncR" randomly split a function (which comes with definition) into decl + axiom define
+-- returns Nothing if there's nothing to split 
+splitFuncR :: Mutation
+splitFuncR gen muC prog = case gFuncs muC of
+  [] -> Nothing 
+  _  -> undefined 
+
+splitProcR :: Mutation
+splitProcR = undefined
+
+
+-- |
+-- adds TRUE in case of no Axioms declared
+addAxiom2PrecondR :: Mutation
+addAxiom2PrecondR gen muC prog = case gAxioms muC of
+  [] -> undefined
+  axioms -> undefined
+
+{-
+
+"L"
+* Swap any two local variable declarations;
+* (?) Split a declaration of multiple variables into multiple declarations; (? local or global)
+* Rename a local identifier;
+* Split a conjunctive pre-/postcondition, intermediate assertion, or loop invariant into two clauses;
+* Join two pre-/postcondition, intermediate assertion, or loop invariant clauses into a conjunctive one;
+* Swap any two pre-/postcondition, intermediate assertion, or loop invariant clauses;
+* Split, join, or swap any frame conditions;
+* Complement an {\B{if}} condition and switch its {\B{then}} and {\B{else}} branches;
+* Convert a {\B{while}} loop to using {\B{goto}};
+* Convert a conditional statement to using {\B{goto}};
+
+-}
+
+swapLocalVarDeclR :: Mutation
+swapLocalVarDeclR = undefined
+
+splitMultiDeclR :: Mutation
+splitMultiDeclR gen muC prog = undefined 
+
+renameLocalIdR :: Mutation
+renameLocalIdR = undefined 
+
+
+
+
+{-
+
+"G"
+* Add a fresh declaration;
+* Add {\B{true}} as pre-/postcondition, intermediate assertion, or loop invariant clause;
+* Duplicate an existing assignment;
+* Add an assignment of a variable to itself;
+* Add {\B{$\;$+ k - k}} to an integer expression, where {\B{k}} is an integer variable;
+* Split the integer assignment of an expression {\B{A + B}} into consecutive assignments of {\B{A}} and {\B{B}};
+* Passify an assignment;
+* Desugar a procedure call;
+* Soundly unroll a loop body once;
+* Remove a trigger annotation;
+* Split a procedure's VC according to its paths to an assertions.
+
+-}
+
+
+
+
+{- MISC -}
+
+giveMeAnId :: MuContext -> String
+giveMeAnId = undefined 
+
+
+getConstDecl :: Program -> [Decl]
+getConstDecl (Program decls _) = [ d | d@(Pos _ (ConstantDecl _ _ _ _ _)) <- decls ]
+-- we need lens, the real thing 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{- Structural Mutations -}
+-- | ProgPermutations
+progPerms :: Program -> [Program]
+progPerms (Program decls comments) = undefined -- map (Program) (permutations decls)
+
+-- | swapDeclSeq (S.1)
+-- Swap any two declarations by generating all possible permutations
+swapDeclSeq :: Int -> Int -> Program -> Maybe Program
+swapDeclSeq from to (Program decls comments) = Just $ Program decls' comments
+  where decls' = swapElementsAt from to decls
+
+-- | globalIdRename (S.2)
+-- Rename a global identifier
+
+-- | functionAxiomtization (S.4)
+functionAxiomtization :: [BareDecl] -> [BareDecl]
+functionAxiomtization decls = concatMap funcAxmtiz decls
+
+-- [FIXME] e should be quantified over all args; see Boogie2 p.9
+-- function attrs F(args) returns (res) {E}; 
+-- function attrs F(args) returns (res);
+-- axiom (forall args0 • F(argIds) == E );
+funcAxmtiz :: BareDecl -> [BareDecl]
+funcAxmtiz (FunctionDecl att name t_args formals ret (Just e)) = [funcDecl, axiomE]
+  where funcDecl = FunctionDecl att name t_args formals ret Nothing
+        axiomE = AxiomDecl e
+funcAxmtiz d = [d]
+
+
+-- [FIXME] 'where' clause is now dropped all together!
+-- also should consider the multiple ImplementationDecl and multiple [body] issue
+procedureSplit :: BareDecl -> [BareDecl]
+procedureSplit (ProcedureDecl name t_args formals rets contracts (Just body)) = [procDecl, impDecl]
+  where procDecl = (ProcedureDecl name t_args formals rets contracts Nothing)
+        impDecl = ImplementationDecl name t_args formals' rets' [body]
+        formals' = map dropWhere formals
+        rets' = map dropWhere rets
+procedureSplit d = [d]
+
+
+{- Local Mutations -}
+-- | (L.1)
+l1 :: Int -> Int -> Body -> Body
+l1 from to (idtws, block) = (idtws', block)
+  where idtws' = swapElementsAt from to idtws
+
+-- | invertedIF (L.8)
+
+{- Generative Mutations -}
+-- | addinTruth (G.2)
+-- Add true as pre-/postcondition, intermediate assertion, or loop invariant clause;
+addinTruth :: Program -> [Program]
+addinTruth = undefined 
+
+
+{- misc -}
+-- [TODO] Not particularly proud of this! 
+swapElementsAt :: Int -> Int -> [a] -> [a]
+swapElementsAt a' b' list = front ++ targetB ++ list2 ++ targetA ++ back
+    where   front = take a list
+            targetA = [list !! a]
+            targetB = [list !! b]
+            list2 = drop (succ a) (take b list)
+            back = drop (succ b) list
+            (a, b) = if a' > b' then (b', a') else (a', b')
+
+dropWhere :: IdTypeWhere -> IdType
+dropWhere idtw = (itwId idtw, itwType idtw)
+
+getAxioms :: Program -> [BareDecl]
+getAxioms (Program decls _) = []
