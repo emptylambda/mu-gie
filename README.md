@@ -1,4 +1,4 @@
-## μgie: lightweight testing on Boogie
+## μgie: robustness testing of Boogie
 μgie is a tool to perform _robustness testing_ of programs written in the popular intermediate verification language [Boogie](https://github.com/boogie-org/boogie).
 
 Given a Boogie program as input, μgie generates many syntactic *mutants* that are constructed to be semantically equivalent to the input.
