@@ -20,8 +20,8 @@ where `config.json` is a JSON configuration file that specifies:
   * `prefix`: add a prefix to all generated mutants
   * `mutationLevels`: how many mutation operators are generated internally (this is for debugging purposes)
   
-We include an example `config.json` under the `Mutation` directory, which only uses the "L8" mutation operator and generates 1 mutant with at most 10000 tries, and prints it to standard output.
+We include an example `config.json` under the `Mutation` directory, which only uses the "L8" mutation operator and generates 1 mutant with at most 10000 tries.
 
-## Benchmark Mutants: 
+## Benchmark mutants: 
 We also include the two batches of mutants generated in our [experiments](https://chalmersuniversity.box.com/shared/static/5a1dvt1s0am5smx4u23oezuw6633hiuf.zip). 
 		 
