@@ -1,45 +1,36 @@
-## μgie: lightweight testing on [Boogie](https://github.com/boogie-org/boogie)
-μgie provides a lightweight testing on the popular intermediate verification language Boogie. 
-We call this idea the _robustness testing_ on IVLs.  
-By introducing syntactical variants (which should not impose any semantical change), μgie generates a collection of mutants from the input seed program.  
-The goal of mutating the original seed Boogie program is to exercise possible language variants of Boogie, and to further explore brittle behaviours of deductive verification systems.  
+## μgie: robustness testing of Boogie programs
+μgie is a tool to perform _robustness testing_ of programs written in the popular intermediate verification language [Boogie](https://github.com/boogie-org/boogie).
 
-#### What is μgie? (pronounced: "moo-gie") 
+Given a Boogie program as input, μgie generates many syntactic *mutants* that are constructed to be semantically equivalent to the input.
+If Boogie behaves differently with some of the mutants (namely, it verifies successfully the input program but fails to verify some of the mutants), it means that Boogie's behavior is *brittle* on that particular example, because it depends on minor syntactic details that should be immaterial.
 
-μgie is a tool which inputs a seed [Boogie program](https://github.com/boogie-org/boogie) 
-and generates a collection of mutant programs, each with a slight mutation twist from
-original seed. This tool is developed with the goal of stress-testing overall brittleness of program verifiers. 
+## Usage
 
-The mutations DO NOT introduce any semantical change
-to the underlying seed but merely explore syntatical variants of the
-seed, think of it as a "thesaursus" for your Boogie programs.
-
-
-## Usage: 
-μgie operates by reading a stand-alone JSON configuration file.  
-You can invoke μgie by:  `BMu config.json`  
-Inside the JSON config file you can specify the following parameters: 
-  1. `sourceBoogie`: source program you want to conduct robustness testing. 
-  2. `mutationRatio`: deciding the overall distribution of each mutation operator; the randomly operator selection is based on this weighted list. 
-  3. `mutationLevels`: specifying how many _mutation operators_ are generated internally; mainly for internal testing and is a refined parameter. 
-  4. `numberOfMutants`: #mutants you wish to output. 
-  5. `mutationAttempts`: #tries before giving up. 
-  6. `outputToFile`: if μgie should write to STDOUT or to files. 
-  7. `verbose`: toggle verbose output along the generation process. 
-  8. `prefix`: adding a customized prefix on the generated mutants. 
+To run μgie:
+```shell
+$ BMu config.json
+```
+where `config.json` is a JSON configuration file that specifies:
+  * `sourceBoogie`: input Boogie program to mutate
+  * `mutationRatio`: weights of mutation operators (determining the likelihood of randomly selecting each operator)
+  * `numberOfMutants`: number of mutants to generate
+  * `mutationAttempts`: number of attempts to generate new mutants
+  * `outputToFile`: output to files (default: output to standad output)
+  * `verbose`: verbose output during generation
+  * `prefix`: add a prefix to all generated mutants
+  * `mutationLevels`: how many mutation operators are generated internally (this is for debugging purposes)
   
-We've included on example `config.json` under `Mutation` directory, it is configured to: only use "L8" as mutation operator and generate 1 mutant within 10000 tries. The mutant is reported to STDOUT. 
+We include an example `config.json` under the `Mutation` directory, which only uses the "L8" mutation operator and generates 1 mutant with at most 10000 tries.
 
-## Benchmark Mutants: 
-Here's a collection of mutants we used as our [benchmark](https://chalmersuniversity.box.com/shared/static/5a1dvt1s0am5smx4u23oezuw6633hiuf.zip), including an un-biased mutant set and specialized ones. 
+## Benchmark mutants
+We also include the two batches of mutants generated in our [experiments](https://chalmersuniversity.box.com/shared/static/5a1dvt1s0am5smx4u23oezuw6633hiuf.zip). 
 
 
 ## Mutation operators
 ------------------
-The implementation of `mugie` offers more mutation operators than those described in the paper.
-In addition, the operators' names are not the same as those used in the paper: the following correspondence is used.
+The implementation of μgie includes more mutation operators than those described in the [paper](TO BE ADDED), and the operators' names are not the same as those used in the paper:
 
-| operator name in the paper | operator name in mugie |
+| operator name in the paper | operator name in μgie |
 |:--------------------------:|:----------------------:|
 |  S1                        |   S1                   |
 |  S2                        |   S5                   |
@@ -51,9 +42,9 @@ In addition, the operators' names are not the same as those used in the paper: t
 |  G1                        |   G2                   |
 |  G2                        |   G10                  |
 
-and here is a table briefly describing each mutation operator: 
+Here is a table briefly describing each mutation operator: 
 
-| operator name in mugie | description                                                                        |
+| operator name in μgie | description                                                                        |
 |:----------------------:|:----------------------------------------------------------------------------------:|
 | S1                     | Swap any two declarations                                                          |
 | S5                     | Split a procedure definition into declaration and implementation                   |
@@ -65,11 +56,10 @@ and here is a table briefly describing each mutation operator:
 | G10                    | Remove a trigger annotation                                                        |
 
 
-## Headers: 
-Each mutant generated by μgie comes with a header, loggind down basic
-information of this mutant. Most importantly, we can have a closer
-look at the mutation history---the overall mutations μgie applied---of
-this mutant. 
+## Headers
+Each mutant includes a header comment with information about 
+how the mutant was generated as a sequence of application of
+mutations operators to the original input Boogie program.
 
-## More details: 
-Read our [paper @arXiv]()
+## More details
+Read the [paper describing μgie](TO BE ADDED).
