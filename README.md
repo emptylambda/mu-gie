@@ -4,7 +4,7 @@
 Given a Boogie program as input, μgie generates many syntactic *mutants* that are constructed to be semantically equivalent to the input.
 If Boogie behaves differently with some of the mutants (namely, it verifies successfully the input program but fails to verify some of the mutants), it means that Boogie's behavior is *brittle* on that particular example, because it depends on minor syntactic details that should be immaterial.
 
-## Usage: 
+## Usage
 
 To run μgie:
 ```shell
@@ -22,6 +22,6 @@ where `config.json` is a JSON configuration file that specifies:
   
 We include an example `config.json` under the `Mutation` directory, which only uses the "L8" mutation operator and generates 1 mutant with at most 10000 tries.
 
-## Benchmark mutants: 
+## Benchmark mutants
 We also include the two batches of mutants generated in our [experiments](https://chalmersuniversity.box.com/shared/static/5a1dvt1s0am5smx4u23oezuw6633hiuf.zip). 
 		 
