@@ -1,4 +1,7 @@
--- | Tokens used in Boogie 2
+{-|
+Module    : Boogie.Tokens
+Updated   : Feb 2018 Jeff 
+-}
 module Boogie.Tokens where
 
 import Boogie.AST
@@ -9,7 +12,7 @@ import Data.Map (Map, (!), fromList)
 keywords :: [String]
 keywords = ["assert", "assume", "axiom", "bool", "break", "call", "complete", "const",
     "else", "div", "ensures", "exists", "extends", "false", "forall", "free", "function",
-    "goto", "havoc", "if", "implementation", "int", "invariant", "lambda", "mod", "modifies",
+    "goto", "havoc", "if", "implementation", "int", "real", "invariant", "lambda", "mod", "modifies",
     "old", "procedure", "requires", "return", "returns", "then", "true", "type", "unique",
     "var", "where", "while"
     ]

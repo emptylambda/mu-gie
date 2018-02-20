@@ -81,7 +81,8 @@ typeAtom :: Parser Type
 typeAtom = choice [
   reserved "int" >> return IntType,
   reserved "bool" >> return BoolType,
-  -- bit vector: [JEF] Temp fix
+  reserved "real" >> return RealType, 
+  -- bit vector: [TODO_jeff] temp parser fix 
   reserved "bv" >> integer >>= (\i -> return (IdType ("bv" ++ show i) [])),
   parens type_
   ]
@@ -165,9 +166,10 @@ atom = choice [
       reservedOp "::" 
       annots <- case op of
         Lambda -> return []
-        _ -> many trigAttr' -- many trigAttr
+        -- _ -> many trigAttr' -- many trigAttr
+        _ -> triggerExps
       e <- expression
-      return $ Quantified (concat annots) False op args (ungroup vars) e
+      return $ Quantified annots False op args (ungroup vars) e
 
 arrayExpression :: Parser Expression
 arrayExpression = do
@@ -476,10 +478,6 @@ spec = do
       return $ Ensures free e]
 
 {- Misc -}
-
-hasTrigger :: Parser Bool
-hasTrigger = option False (trigger >> return True)
-
 hasKeyword :: String -> Parser Bool
 hasKeyword s = option False (reserved s >> return True)
 
@@ -504,6 +502,9 @@ ungroupWhere :: [([Id], Type, Expression)] -> [IdTypeWhere]
 ungroupWhere = concatMap ungroupWhereOne
   where ungroupWhereOne (ids, t, e) = zipWith3 IdTypeWhere ids (repeat t) (repeat e)
 
+
+  
+
 trigAttr :: Parser Annotation
 trigAttr = do
   -- (try trigger) <|> (void attribute) <?> "attribute or trigger"
@@ -513,7 +514,7 @@ trigAttr = do
 trigAttr' :: Parser [Expression]
 trigAttr' = do
   -- (try trigger) <|> (void attribute) <?> "attribute or trigger"
-  t <- (try triggerExp) <|> (attribute'') <?> "attribute or trigger"
+  t <- (try triggerExps) <|> (attribute'') <?> "attribute or trigger"
   return t 
 
 -- [TODO] Temp fix for multiple triggers
@@ -522,8 +523,8 @@ trigger = do
   annot <- (braces (commaSep1 expression)) <?> "trigger"
   return $ concat $ intersperse ", " (map show annot) 
 
-triggerExp :: Parser [Expression]
-triggerExp = do
+triggerExps :: Parser [Expression]
+triggerExps = do
   triggers <- (braces (commaSep1 expression)) <?> "trigger"
   return $ triggers
 

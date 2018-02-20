@@ -26,7 +26,8 @@ data Program = Program {
 -- | Types parametrized by the representation of free type variables
 data GenType fv = 
   BoolType |                                -- ^ bool 
-  IntType |                                 -- ^ int
+  IntType  |                                -- ^ int
+  RealType |                                -- ^ real 
   MapType [fv] [GenType fv] (GenType fv) |  -- 'MapType' @type_vars domains range@ : arrow type (used for maps, function and procedure signatures)
   IdType Id [GenType fv]                    -- 'IdType' @name args@: type denoted by an identifier (either type constructor, possibly with arguments, or a type variable)
   deriving (Data, Typeable)
@@ -47,6 +48,7 @@ deBrujn t = deBrujn' [] t
       Just i -> dbIndex (length fv - i - 1)
     deBrujn' fv (IdType name args) = IdType name (map (deBrujn' fv) args)
     deBrujn' _ BoolType = BoolType
+    deBrujn' _ RealType = RealType
     deBrujn' _ IntType = IntType
     dbIndex i = IdType ("DB " ++ show i) []
     
@@ -92,7 +94,7 @@ data BareExpression =
   Coercion Expression Type |
   UnaryExpression UnOp Expression |
   BinaryExpression BinOp Expression Expression |
-  Quantified [Expression] Bool QOp [Id] [IdType] Expression   -- ^ 'Quantified' @qop triggered type_vars bound_vars expr@
+  Quantified [Expression] QOp [Id] [IdType] Expression   -- ^ 'Quantified' @triggers qop type_vars bound_vars expr@
   deriving (Eq, Ord, Data, Typeable)  -- syntactic equality
   
 -- | 'mapSelectExpr' @m args@ : map selection expression with position of @m@ attached

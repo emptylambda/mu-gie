@@ -39,10 +39,6 @@ instance Pretty Type where
   pretty (IdType id args) = text id <+> argsDoc
     where argsDoc = hsep (map pretty args)
 
-
-
-
-  -- this is over parenthising but a quick fix
   
 {- Expressions -}
 
@@ -54,7 +50,7 @@ power (Var _) = 10
 power (Application _ _) = 10
 power (Old _) = 10
 power (IfExpr _ _ _) = 10
-power (Quantified _ _ _ _ _ _) = 10
+power (Quantified _ _ _ _ _) = 10
 power (MapSelection _ _) = 9
 power (MapUpdate _ _ _) = 9
 power (Coercion _ _) = 8
@@ -86,13 +82,11 @@ exprDocAt n (Pos _ e) = condParens (n' <= n) (
     Coercion e t -> exprDocAt n' e <+> text ":" <+> pretty t
     UnaryExpression unOp e -> pretty unOp <> exprDocAt n' e
     BinaryExpression binOp e1 e2 -> exprDocAt n' e1 <+> pretty binOp <+> exprDocAt n' e2
-    Quantified annotation t qOp fv vars e -> t' <+>
-      parens (pretty qOp  <+> typeArgsDoc fv <+> commaSep (map idpretty vars) <+> text "::" <+> pretty' annotation <+> exprDoc e)
-      -- where t' = "<<" <+> text (show t) <+> ">>"
-      where t' = ""
-            pretty' annot = case annot of
-              [] -> ""
-              _ -> braces $ commaSep (map pretty annot) 
+    Quantified annotation qOp fv vars e -> 
+      pretty qOp  <+> typeArgsDoc fv <+> commaSep (map idpretty vars) <+> text "::" <+> pretty' annotation <+> exprDoc e
+      where pretty' annot = case annot of
+                              [] -> ""
+                              _ -> braces $ commaSep (map pretty annot) 
   )
   where
     n' = power e
