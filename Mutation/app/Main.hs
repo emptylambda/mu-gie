@@ -22,7 +22,6 @@ import Control.Lens
 import Control.Monad
 import Control.Monad.State
 import System.Random
-import Renaming
 
 {- rewrite -}
 data Mutant = Mutant {

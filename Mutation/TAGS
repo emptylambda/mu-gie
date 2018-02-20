@@ -4,117 +4,62 @@ main main1,2
 
 ./app/Main.hs,1743
 module Main Main2,3
-data Mutant Mutant27,28
-data Mutant = Mutant Mutant27,28
-    prog prog28,29
-  , sourcePath sourcePath29,30
-  , source source30,31
-  , mutation mutation31,32
+data Mutant Mutant26,27
+data Mutant = Mutant Mutant26,27
+    prog prog27,28
+  , sourcePath sourcePath28,29
+  , source source29,30
+  , mutation mutation30,31
+numOfFrags numOfFrags33,34
 numOfFrags numOfFrags34,35
-numOfFrags numOfFrags35,36
-instance instance37,38
+instance instance36,37
+writeToFile writeToFile48,49
 writeToFile writeToFile49,50
-writeToFile writeToFile50,51
+writeOut writeOut55,56
 writeOut writeOut56,57
-writeOut writeOut57,58
+showOut showOut63,64
 showOut showOut64,65
-showOut showOut65,66
-parseAndTypecheck parseAndTypecheck71,72
-readConfig readConfig79,80
+parseAndTypecheck parseAndTypecheck70,71
+readConfig readConfig78,79
+generateMutations generateMutations84,85
 generateMutations generateMutations85,86
-generateMutations generateMutations86,87
+randomSelect randomSelect93,94
 randomSelect randomSelect94,95
-randomSelect randomSelect95,96
+getMut getMut103,104
 getMut getMut104,105
-getMut getMut105,106
+xrayLoop xrayLoop149,150
 xrayLoop xrayLoop150,151
-xrayLoop xrayLoop151,152
+xrayLoop2 xrayLoop2170,171
 xrayLoop2 xrayLoop2171,172
-xrayLoop2 xrayLoop2172,173
+validName validName201,202
 validName validName202,203
-validName validName203,204
-mainWithConfig mainWithConfig208,209
-main main227,228
-type WeightedList WeightedList233,234
-type WeightedList a a233,234
+mainWithConfig mainWithConfig207,208
+main main226,227
+type WeightedList WeightedList232,233
+type WeightedList a a232,233
+jitter jitter234,235
 jitter jitter235,236
-jitter jitter236,237
-t_config t_config242,243
-prettyPrint prettyPrint245,246
-testJSONRead testJSONRead248,249
-mutationGenLoop mutationGenLoop261,262
-randomName randomName273,274
-randomPick randomPick280,281
+t_config t_config241,242
+prettyPrint prettyPrint244,245
+testJSONRead testJSONRead247,248
+mutationGenLoop mutationGenLoop260,261
+randomName randomName272,273
+randomPick randomPick279,280
+ranPool ranPool286,287
 ranPool ranPool287,288
-ranPool ranPool288,289
-type RandStat RandStat298,299
+type RandStat RandStat297,298
+getRandInRange getRandInRange299,300
 getRandInRange getRandInRange300,301
-getRandInRange getRandInRange301,302
+getRandName getRandName307,308
 getRandName getRandName308,309
-getRandName getRandName309,310
+getRandom getRandom312,313
 getRandom getRandom313,314
-getRandom getRandom314,315
+getTwoRandoms getTwoRandoms320,321
 getTwoRandoms getTwoRandoms321,322
-getTwoRandoms getTwoRandoms322,323
+runTwoRandoms runTwoRandoms323,324
 runTwoRandoms runTwoRandoms324,325
-runTwoRandoms runTwoRandoms325,326
+getMutation getMutation331,332
 getMutation getMutation332,333
-getMutation getMutation333,334
-
-./app/BMutation.hs,1619
-module Main Main2,3
-data Mutant Mutant24,25
-data Mutant = Mutant Mutant24,25
-    prog prog25,26
-  , sourcePath sourcePath26,27
-  , source source27,28
-  , mutation mutation28,29
-numOfFrags numOfFrags31,32
-numOfFrags numOfFrags32,33
-instance instance34,35
-writeOut writeOut46,47
-writeOut writeOut47,48
-showOut showOut54,55
-showOut showOut55,56
-parseAndTypecheck parseAndTypecheck61,62
-readConfig readConfig69,70
-generateMutations generateMutations75,76
-generateMutations generateMutations76,77
-randomSelect randomSelect83,84
-randomSelect randomSelect84,85
-getMut getMut93,94
-getMut getMut94,95
-xrayLoop xrayLoop121,122
-xrayLoop xrayLoop122,123
-validName validName140,141
-validName validName141,142
-mainWithConfig mainWithConfig146,147
-main main156,157
-type WeightedList WeightedList160,161
-type WeightedList a a160,161
-jitter jitter162,163
-jitter jitter163,164
-t_config t_config169,170
-prettyPrint prettyPrint172,173
-testJSONRead testJSONRead175,176
-mutationGenLoop mutationGenLoop188,189
-randomName randomName200,201
-randomPick randomPick207,208
-ranPool ranPool214,215
-ranPool ranPool215,216
-type RandStat RandStat225,226
-getRandInRange getRandInRange227,228
-getRandInRange getRandInRange228,229
-getRandName getRandName235,236
-getRandName getRandName236,237
-getRandom getRandom240,241
-getRandom getRandom241,242
-getTwoRandoms getTwoRandoms248,249
-getTwoRandoms getTwoRandoms249,250
-runTwoRandoms runTwoRandoms251,252
-runTwoRandoms runTwoRandoms252,253
-getMutation getMutation259,260
-getMutation getMutation260,261
 
 ./test/MutationTesting.hs,0
 
