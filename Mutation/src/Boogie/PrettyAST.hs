@@ -13,6 +13,7 @@ import Boogie.AST
 import Boogie.Position
 import Boogie.Tokens
 import Data.Maybe
+import Data.Either (lefts, rights)
 import qualified Data.Map as M
 
 {- Interface -}
@@ -82,14 +83,15 @@ exprDocAt n (Pos _ e) = condParens (n' <= n) (
     Coercion e t -> exprDocAt n' e <+> text ":" <+> pretty t
     UnaryExpression unOp e -> pretty unOp <> exprDocAt n' e
     BinaryExpression binOp e1 e2 -> exprDocAt n' e1 <+> pretty binOp <+> exprDocAt n' e2
-    Quantified annotation qOp fv vars e -> 
-      pretty qOp  <+> typeArgsDoc fv <+> commaSep (map idpretty vars) <+> text "::" <+> pretty' annotation <+> exprDoc e
-      where pretty' annot = case annot of
-                              [] -> ""
-                              _ -> braces $ commaSep (map pretty annot) 
+    Quantified trigAttrs qOp fv vars e -> 
+      pretty qOp <+> commaSep (map idpretty vars) <+> text "::" <+> prettyTrigAttr trigAttrs <+> exprDoc e
   )
   where
     n' = power e
+
+prettyTrigAttr :: [TrigAttr] -> Doc
+prettyTrigAttr [] = empty -- represent no annotations 
+prettyTrigAttr trigAttrs = hsep $ map pretty trigAttrs
     
 instance Pretty BareExpression where pretty e = exprDoc (gen e)
 
@@ -265,6 +267,12 @@ instance Pretty Value where
   pretty (Reference _ r) = refDoc r  
   
 {- Attributes and triggers -}
+
+instance Pretty TrigAttr where
+  pretty (Right [])        = empty -- shouldn't be possible parse
+  pretty (Right triggerEs) =
+    braces $ commaSep (map pretty triggerEs)
+  pretty (Left attr)       = pretty attr 
 
 instance Pretty AttrValue where
   pretty (EAttr expr) = pretty expr

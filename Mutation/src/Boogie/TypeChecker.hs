@@ -333,7 +333,7 @@ checkExpression (Pos pos e) = do
     Coercion e t -> checkCoercion e t
     UnaryExpression op e1 -> checkUnaryExpression op e1
     BinaryExpression op e1 e2 -> checkBinaryExpression op e1 e2
-    Quantified annot t qop tv vars e -> checkQuantified qop tv vars e
+    Quantified trigAttrs qop tv vars e -> checkQuantified qop tv vars e
     
 checkVar :: Id -> Typing Type
 checkVar id = do

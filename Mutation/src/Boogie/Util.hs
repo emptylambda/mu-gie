@@ -188,7 +188,7 @@ freeVarsTwoState e = case node e of
   Coercion e _ -> freeVarsTwoState e
   UnaryExpression _ e -> freeVarsTwoState e
   BinaryExpression _ e1 e2 -> over both (nub . concat) (unzip [freeVarsTwoState e1, freeVarsTwoState e2])
-  Quantified _ _ _ _ boundVars e -> let (state, old) = freeVarsTwoState e in (state \\ map fst boundVars, old)
+  Quantified _ _ _ boundVars e -> let (state, old) = freeVarsTwoState e in (state \\ map fst boundVars, old)
 
 -- | Free variables in an expression, in current state
 freeVars = fst . freeVarsTwoState
@@ -214,7 +214,7 @@ exprSubst' binding (IfExpr cond e1 e2) = IfExpr (exprSubst binding cond) (exprSu
 exprSubst' binding (Coercion e t) = Coercion (exprSubst binding e) t
 exprSubst' binding (UnaryExpression op e) = UnaryExpression op (exprSubst binding e)
 exprSubst' binding (BinaryExpression op e1 e2) = BinaryExpression op (exprSubst binding e1) (exprSubst binding e2)
-exprSubst' binding (Quantified annot t qop tv boundVars e) = Quantified annot t qop tv boundVars (exprSubst binding' e)
+exprSubst' binding (Quantified trigAs qop tv boundVars e) = Quantified trigAs qop tv boundVars (exprSubst binding' e)
   where binding' = deleteAll (map fst boundVars) binding
 exprSubst' _ e = e
 
@@ -250,7 +250,7 @@ mapRefs expr = case node expr of
   Coercion e _ -> mapRefs e
   UnaryExpression _ e -> mapRefs e
   BinaryExpression _ e1 e2 -> nub . concat $ [mapRefs e1, mapRefs e2]
-  Quantified _ _ _ _ _ e -> mapRefs e  
+  Quantified _ _ _ _ e -> mapRefs e  
   
 -- | 'refSelections' @expr@ : all map reference selections that occur in @expr@, where the map is a free variable
 refSelections :: Expression -> [(Ref, [Expression])]
@@ -268,7 +268,7 @@ refSelections expr = case node expr of
   Coercion e _ -> refSelections e
   UnaryExpression _ e -> refSelections e
   BinaryExpression _ e1 e2 -> nub . concat $ [refSelections e1, refSelections e2]
-  Quantified _ _ _ _ boundVars e -> refSelections e
+  Quantified _ _ _ boundVars e -> refSelections e
   
 -- | 'applications' @expr@ : all function applications that occur in @expr@
 applications :: Expression -> [(Id, [Expression])]
@@ -283,7 +283,7 @@ applications expr = case node expr of
   Coercion e _-> applications e
   UnaryExpression _ e-> applications e
   BinaryExpression _ e1 e2-> nub . concat $ [applications e1, applications e2]
-  Quantified _ _ _ _ _ e-> applications e
+  Quantified _ _ _ _ e-> applications e
 
 -- | 'removeBoundClashes' @names expr@: replace any bound variables in @expr@ that clash with @names@
 removeBoundClashes :: [Id] -> Expression -> Expression
@@ -298,12 +298,12 @@ removeBoundClashes names (Pos p expr) = attachPos p $ case expr of
   Coercion e t -> Coercion (go e) t
   UnaryExpression op e -> UnaryExpression op (go e)
   BinaryExpression op e1 e2 -> BinaryExpression op (go e1) (go e2)
-  Quantified annot t op tv bv e -> let
+  Quantified trigAs op tv bv e -> let
       vars = map fst bv
       types = map snd bv
       vars' = removeClashesWith vars names
       e' = exprSubst (M.fromList $ zip vars (map (gen . Var) vars')) e
-    in Quantified annot t op tv (zip vars' types) (removeBoundClashes (names ++ vars') e')
+    in Quantified trigAs op tv (zip vars' types) (removeBoundClashes (names ++ vars') e')
   where
     go = removeBoundClashes names
   

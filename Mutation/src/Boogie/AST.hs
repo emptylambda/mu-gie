@@ -1,12 +1,21 @@
+{-
+Module      : Boogie.AST 
+Description : Abstract syntax tree for Boogie2 
+Maintainer  : yutingc@chalmers.se
+
+Adopted from Boogaloo. 
+2018.Feb Adding annotations (Triggers) 
+-}
+
 {-# LANGUAGE TemplateHaskell #-}
 {-# LANGUAGE StandaloneDeriving, FlexibleInstances, TypeSynonymInstances #-}
 {-# LANGUAGE DeriveDataTypeable #-}
--- | Taken and modified based on Boogaloo 
 module Boogie.AST where
 
 import Boogie.Position
 import Data.Data
 import Data.Map (Map)
+import Data.Either (lefts, rights)
 import qualified Data.Map as M
 import Data.List
 import Data.Generics.Uniplate.Data 
@@ -35,8 +44,7 @@ data GenType fv =
 -- | Regular types with free variables represented as identifiers 
 type Type = GenType Id
   
--- | Type representation with nameless dummies
--- (using DeBrujn indexes).
+-- | Type representation with nameless dummies, using DeBrujn indexes.
 -- This representation is invariant with respect to alpha-conversion and is used to derive instances of Eq and Ord.
 deBrujn :: GenType Id -> GenType ()
 deBrujn t = deBrujn' [] t
@@ -84,7 +92,7 @@ type Annotation = String
 data BareExpression = 
   Literal Value |
   Var Id |                                        -- ^ 'Var' @name@
-  TypedVar Id Type |                              -- TypedVar 
+  TypedVar Id Type |                              
   Logical Type Ref |                              -- ^ Logical variable
   Application Id [Expression] |                   -- ^ 'Application' @f args@
   MapSelection Expression [Expression] |          -- ^ 'MapSelection' @map indexes@
@@ -94,22 +102,9 @@ data BareExpression =
   Coercion Expression Type |
   UnaryExpression UnOp Expression |
   BinaryExpression BinOp Expression Expression |
-  Quantified [Expression] QOp [Id] [IdType] Expression   -- ^ 'Quantified' @triggers qop type_vars bound_vars expr@
-  deriving (Eq, Ord, Data, Typeable)  -- syntactic equality
-  
--- | 'mapSelectExpr' @m args@ : map selection expression with position of @m@ attached
-mapSelectExpr m args = attachPos (position m) (MapSelection m args)  
- 
-ff = Literal (BoolValue False)
-tt = Literal (BoolValue True)
-numeral n = Literal (IntValue n)
+  Quantified [TrigAttr] QOp [Id] [IdType] Expression   -- ^ 'Quantified' @trig_attrs qop type_vars bound_vars expr@
+  deriving (Eq, Ord, Data, Typeable)
 
-isLiteral (Pos _ (Literal _)) = True
-isLiteral _ = False
-
-fromLiteral (Pos _ (Literal v)) = v
-fromLiteral (Pos _ _) = error "fromLiteral is called on a non-literal expr"
-  
 -- | Wildcard or expression  
 data WildcardExpression = Wildcard | Expr Expression
   deriving (Eq, Data, Typeable)
@@ -229,22 +224,29 @@ valueFromInteger IntType n        = IntValue n
 valueFromInteger t@(IdType _ _) n = CustomValue t (fromInteger n)
 valueFromInteger _ _              = error "cannot create a boolean or map value from integer" 
   
--- unValueInt (IntValue n) = n  
--- unValueBool (BoolValue b) = b
-
 
 {- Attributes and triggers -}
 
--- | Attribute value
-data AttrValue = EAttr Expression | SAttr String
-  deriving (Eq, Data, Typeable)
+-- | [JEFF] TrigAttr
+type Trigger = Expression 
 
 -- | Attribute
 data Attribute = Attribute {
   aTag :: Id,
   aValues :: [AttrValue]
-  } deriving (Eq, Data, Typeable)
+  } deriving (Eq, Ord, Data, Typeable)
     
+-- | Attribute value
+data AttrValue = EAttr Expression | SAttr String
+  deriving (Eq, Ord, Data, Typeable)
+
+
+-- | TrigAtter is either an Attribute or a group of Triggers
+type TrigAttr = Either Attribute [Trigger]
+
+getTriggers :: [TrigAttr] -> [[Trigger]]
+getTriggers = rights
+
 {- Misc -}
 
 -- | Identifier
@@ -297,11 +299,21 @@ bareSt2Block = (:[]) . gen . (,) [] . gen
 block2ListStmts :: Block -> [Statement]
 block2ListStmts = map (snd . node)
 
+{- misc -}
+mapSelectExpr m args = attachPos (position m) (MapSelection m args)  
+ 
+ff = Literal (BoolValue False)
+tt = Literal (BoolValue True)
+numeral n = Literal (IntValue n)
+
+isLiteral (Pos _ (Literal _)) = True
+isLiteral _ = False
+
+fromLiteral (Pos _ (Literal v)) = v
+fromLiteral (Pos _ _) = error "fromLiteral is called on a non-literal expr"
 
 
-{-
-   making Prisms: this part must be at the end of code
--}
+{-  Prisms: this part must be at the end of code -}
 makePrisms ''BareDecl
 makePrisms ''Program
 makePrisms ''BareExpression
