@@ -86,8 +86,6 @@ data QOp = Forall | Exists | Lambda
 -- | Expression with a source position attached  
 type Expression = Pos BareExpression
 
-type Annotation = String
-  
 -- | Expression
 data BareExpression = 
   Literal Value |

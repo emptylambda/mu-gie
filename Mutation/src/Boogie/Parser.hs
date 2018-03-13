@@ -166,10 +166,9 @@ atom = choice [
       reservedOp "::" 
       annots <- case op of
         Lambda -> return []
-        -- _ -> many trigAttr' -- many trigAttr
-        _ -> triggerExps
+        _ -> triggerAttrs 
       e <- expression
-      return $ Quantified annots False op args (ungroup vars) e
+      return $ Quantified annots op args (ungroup vars) e
 
 arrayExpression :: Parser Expression
 arrayExpression = do
@@ -503,31 +502,6 @@ ungroupWhere = concatMap ungroupWhereOne
   where ungroupWhereOne (ids, t, e) = zipWith3 IdTypeWhere ids (repeat t) (repeat e)
 
 
-  
-
-trigAttr :: Parser Annotation
-trigAttr = do
-  -- (try trigger) <|> (void attribute) <?> "attribute or trigger"
-  t <- (try trigger) <|> (attribute') <?> "attribute or trigger"
-  return t 
-
-trigAttr' :: Parser [Expression]
-trigAttr' = do
-  -- (try trigger) <|> (void attribute) <?> "attribute or trigger"
-  t <- (try triggerExps) <|> (attribute'') <?> "attribute or trigger"
-  return t 
-
--- [TODO] Temp fix for multiple triggers
-trigger :: Parser Annotation
-trigger = do
-  annot <- (braces (commaSep1 expression)) <?> "trigger"
-  return $ concat $ intersperse ", " (map show annot) 
-
-triggerExps :: Parser [Expression]
-triggerExps = do
-  triggers <- (braces (commaSep1 expression)) <?> "trigger"
-  return $ triggers
-
 
 -- | attribute are the "tag-along" msg use, not affecting the overall Boogie program
 -- However, it can be the case that the frontend uses attribute to indicate 'skip the proof of this'
@@ -540,21 +514,61 @@ attribute = (braces (do
   return $ Attribute tag vals
   )) <?> "attribute"  
 
-attribute' :: Parser Annotation
-attribute' = (braces (do
-  reservedOp ":"
-  tag <- identifier
-  -- vals <- commaSep ((EAttr <$> expression) <|> (SAttr <$> stringLiteral))
-  annot <- (many expression)
-  return $ ""
-  )) <?> "attribute"  
+-- attribute' :: Parser Annotation
+-- attribute' = (braces (do
+--   reservedOp ":"
+--   tag <- identifier
+--   -- vals <- commaSep ((EAttr <$> expression) <|> (SAttr <$> stringLiteral))
+--   annot <- (many expression)
+--   return $ ""
+--   )) <?> "attribute"  
 
-attribute'' :: Parser [Expression]
-attribute'' = (braces (do
-  reservedOp ":"
-  tag <- identifier
-  -- vals <- commaSep ((EAttr <$> expression) <|> (SAttr <$> stringLiteral))
-  annot <- (many expression)
-  return $ []
-  )) <?> "attribute"  
+-- attribute'' :: Parser [Expression]
+-- attribute'' = (braces (do
+--   reservedOp ":"
+--   tag <- identifier
+--   -- vals <- commaSep ((EAttr <$> expression) <|> (SAttr <$> stringLiteral))
+--   annot <- (many expression)
+--   return $ []
+--   )) <?> "attribute"  
+  
+-- trigAttr :: Parser Annotation
+-- trigAttr = do
+--   -- (try trigger) <|> (void attribute) <?> "attribute or trigger"
+--   t <- (try trigger) <|> (attribute') <?> "attribute or trigger"
+--   return t 
 
+-- trigAttr' :: Parser [Expression]
+-- trigAttr' = do
+--   -- (try trigger) <|> (void attribute) <?> "attribute or trigger"
+--   t <- (try triggerExps) <|> (attribute'') <?> "attribute or trigger"
+--   return t 
+
+-- trigger :: Parser Annotation
+-- trigger = do
+--   annot <- (braces (commaSep1 expression)) <?> "trigger"
+--   return $ concat $ intersperse ", " (map show annot) 
+
+
+-- triggers :: Parser [Trigger]
+triggers :: Parser TrigAttr
+triggers = do
+  triggers <- (braces (commaSep1 expression)) <?> "triggers"
+  return $ Right triggers
+
+leftAttr :: Parser TrigAttr
+leftAttr = do 
+  att <- attribute
+  return $ Left att
+
+triggerAttr :: Parser TrigAttr
+triggerAttr = do
+  trigAttr <- try triggers
+           <|> leftAttr
+  return trigAttr
+
+
+triggerAttrs :: Parser [TrigAttr]
+triggerAttrs = do
+  annotations <- many triggerAttr
+  return annotations
