@@ -567,7 +567,6 @@ triggerAttr = do
            <|> leftAttr
   return trigAttr
 
-
 triggerAttrs :: Parser [TrigAttr]
 triggerAttrs = do
   annotations <- many triggerAttr
