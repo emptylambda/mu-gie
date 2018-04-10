@@ -28,6 +28,7 @@ instance Pretty Program where
 instance Pretty Type where 
   pretty BoolType = text "bool"
   pretty IntType = text "int"
+  pretty RealType = text "real"
   pretty (MapType fv domains range) = typeArgsDoc fv <> 
     brackets (commaSep (map pretty domains)) <+>
     pretty range

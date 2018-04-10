@@ -1,5 +1,5 @@
 // Dafny 2.0.0.00922 technical preview 0
-// Command Line Options: ./basicDaf.dfy -print basicDafBPL.bpl
+// Command Line Options: /compile:0 /nologo /nologo /noVerify /print:/Users/jeffc/Dev/Mutation/mu-gie/Mutation/test/BoogieProgram/basicDaf.dfy.bpl /Users/jeffc/Dev/Mutation/mu-gie/Mutation/test/BoogieProgram/basicDaf.dfy
 
 const $$Language$Dafny: bool;
 
@@ -582,11 +582,11 @@ axiom (forall o: ref :: 0 <= _System.array.Length(o));
 
 function Int(x: real) : int;
 
-axiom (forall x: real :: { Int(x): int } Int(x): int == int(x));
+// axiom (forall x: real :: { Int(x): int } Int(x): int == int(x));
 
 function Real(x: int) : real;
 
-axiom (forall x: int :: { Real(x): real } Real(x): real == real(x));
+// axiom (forall x: int :: { Real(x): real } Real(x): real == real(x));
 
 axiom (forall i: int :: { Int(Real(i)) } Int(Real(i)) == i);
 
@@ -2528,11 +2528,11 @@ implementation Impl$$_module.__default.Main() returns ($_reverifyPost: bool)
     // AddMethodImpl: Main, Impl$$_module.__default.Main
     $_Frame := (lambda<alpha> $o: ref, $f: Field alpha :: 
       $o != null && read($Heap, $o, alloc) ==> false);
-    assume {:captureState "./basicDaf.dfy(1,14): initial state"} true;
+    assume {:captureState "/Users/jeffc/Dev/Mutation/mu-gie/Mutation/test/BoogieProgram/basicDaf.dfy(1,14): initial state"} true;
     $_reverifyPost := false;
-    // ----- print statement ----- ./basicDaf.dfy(2,3)
+    // ----- print statement ----- /Users/jeffc/Dev/Mutation/mu-gie/Mutation/test/BoogieProgram/basicDaf.dfy(2,3)
     assume true;
-    // ----- assert statement ----- ./basicDaf.dfy(3,3)
+    // ----- assert statement ----- /Users/jeffc/Dev/Mutation/mu-gie/Mutation/test/BoogieProgram/basicDaf.dfy(3,3)
     assume true;
     assert 10 < 2;
 }

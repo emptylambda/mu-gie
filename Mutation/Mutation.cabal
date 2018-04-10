@@ -26,8 +26,6 @@ library
                        Boogie.Util,
                        Boogie.ErrorAccum,
                        Boogie.TypeChecker,
-                       Boogie.Paths,
-                       Boogie.MutationContext,
                        Transformations,
                        Pretty,
                        Interface

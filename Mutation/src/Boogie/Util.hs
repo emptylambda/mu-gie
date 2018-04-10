@@ -81,7 +81,7 @@ import qualified Data.Set as S
 import Control.Applicative
 import Control.Monad.State
 import Control.Lens
--- import Control.Monad.Stream -- no longer used?
+
 
 {- Types -}
 
@@ -94,6 +94,7 @@ type TypeBinding = Map Id Type
 typeSubst :: TypeBinding -> Type -> Type
 typeSubst _ BoolType = BoolType
 typeSubst _ IntType = IntType
+typeSubst _ RealType = RealType
 typeSubst binding (IdType id []) = case M.lookup id binding of
   Just t -> t
   Nothing -> IdType id []

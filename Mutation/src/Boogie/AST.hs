@@ -4,7 +4,7 @@ Description : Abstract syntax tree for Boogie2
 Maintainer  : yutingc@chalmers.se
 
 Adopted from Boogaloo. 
-2018.Feb Adding annotations (Triggers) 
+2018.Feb Adding annotations on quantified Expr
 -}
 
 {-# LANGUAGE TemplateHaskell #-}

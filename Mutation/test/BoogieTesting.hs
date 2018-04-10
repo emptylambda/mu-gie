@@ -22,5 +22,4 @@ parseAndTypecheck f = do
       Left typeCheckErr -> print (typeErrorsDoc typeCheckErr) >> exitFailure
       Right ctx -> prettyPrint prog
 
-
 prettyPrint p = print $ pretty p 
