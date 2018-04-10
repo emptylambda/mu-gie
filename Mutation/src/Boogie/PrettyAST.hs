@@ -85,10 +85,14 @@ exprDocAt n (Pos _ e) = condParens (n' <= n) (
     UnaryExpression unOp e -> pretty unOp <> exprDocAt n' e
     BinaryExpression binOp e1 e2 -> exprDocAt n' e1 <+> pretty binOp <+> exprDocAt n' e2
     Quantified trigAttrs qOp fv vars e -> 
-      parens $ pretty qOp <+> commaSep (map idpretty vars) <+> text "::" <+> prettyTrigAttr trigAttrs <+> exprDoc e
+      parens $ pretty qOp <+> prettyTypeArgs fv <+> commaSep (map idpretty vars) <+> text "::" <+> prettyTrigAttr trigAttrs <+> exprDoc e
   )
   where
     n' = power e
+
+prettyTypeArgs :: [Id] -> Doc
+prettyTypeArgs [] = empty
+prettyTypeArgs fvs = angles $ commaSep (map pretty fvs)
 
 prettyTrigAttr :: [TrigAttr] -> Doc
 prettyTrigAttr [] = empty -- represent no annotations 
