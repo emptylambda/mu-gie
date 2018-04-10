@@ -134,6 +134,7 @@ unifier :: [Id] -> [Type] -> [Type] -> Maybe TypeBinding
 unifier _ [] [] = Just M.empty
 unifier fv (IntType:xs) (IntType:ys) = unifier fv xs ys
 unifier fv (BoolType:xs) (BoolType:ys) = unifier fv xs ys
+unifier fv (RealType:xs) (RealType:ys) = unifier fv xs ys
 unifier fv ((IdType id1 args1):xs) ((IdType id2 args2):ys) | id1 == id2 = unifier fv (args1 ++ xs) (args2 ++ ys)
 unifier fv ((IdType id []):xs) (y:ys) | isTypeVar fv id = 
   if id `isFreeIn` y then Nothing 

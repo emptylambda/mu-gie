@@ -339,6 +339,3 @@ getMutation ("S6", i) (Program prog com) = s6 split
 getMutation ("S7", i) (Program prog com) = s7 (from, to)
   where from = i `mod` (length prog)
         to = (from + i) `mod` (length prog)
-
-
-
