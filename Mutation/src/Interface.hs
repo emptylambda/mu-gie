@@ -22,10 +22,21 @@ instance ToJSON Config where
 instance FromJSON Config 
 
 
--- blankConfig = Config "" defaultMutations (1) (1)
+blankConfig = Config "" defaultMuOps 1000 100 1000 True True ""
 
--- defaultMutations = [("S1", 1),
---                     ("S5", 1)
---                    ]
+defaultMuOps = [
+  ("S1",0),
+  ("S5",0),
+  ("S6",0),
+  ("S7",0),
+  ("G2",0),
+  ("G10",0),
+  ("L1",0),
+  ("L2",0),
+  ("L4",0),
+  ("L5",0),
+  ("L6",0),
+  ("L8",1)
+  ]
 
--- createBlankConfig = B.writeFile "./config.json" $ encode blankConfig
+createBlankConfig = B.writeFile "./config.json" $ encode blankConfig
