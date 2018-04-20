@@ -41,15 +41,18 @@ In addition, the operators' names are not the same as those used in the paper: t
 
 | operator name in the paper | operator name in mugie |
 |:--------------------------:|:----------------------:|
-|  S1                        |   S1                   |
-|  S2                        |   S5                   |
-|  S3                        |   S6                   |
-|  L1                        |   L1                   |
-|  L2                        |   L2                   |
-|  L3  (L3a + L3b)           |   L4 + L5              |
-|  L4                        |   L6                   |
-|  G1                        |   G2                   |
-|  G2                        |   G10                  |
+| S1                         | S1                     |
+| S2                         | S5                     |
+| S3                         | S6                     |
+| L1                         | L1                     |
+| L2                         | L2                     |
+| L3  (L3a + L3b)            | L4 + L5                |
+| L4                         | L6                     |
+| G1                         | G2                     |
+| G2                         | G10                    |
+| S7                         | S7 (new op)            |
+| L8                         | L8 (new op)            |
+
 
 and here is a table briefly describing each mutation operator: 
 
@@ -63,6 +66,8 @@ and here is a table briefly describing each mutation operator:
 | L4 + L5                | Join any two pre-/postconditions into a conjunctive one                            |
 | G2                     | Add `true` as pre-/postcondition, intermediate assertion, or loop invariant clause |
 | G10                    | Remove a trigger annotation                                                        |
+| S7                     | Add axiom to pre-condition                                                         |
+| L8                     | Negate `if` condition and flip its two branches                                    |
 
 
 ## Headers: 
