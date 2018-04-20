@@ -31,34 +31,34 @@ We also include the two batches of mutants generated in our [experiments](https:
 The implementation of μgie includes more mutation operators than those described in the [paper](TO BE ADDED), and the operators' names are not the same as those used in the paper:
 
 | operator name in the paper | operator name in μgie |
-|:--------------------------:|:----------------------:|
-| S1                         | S1                     |
-| S2                         | S5                     |
-| S3                         | S6                     |
-| L1                         | L1                     |
-| L2                         | L2                     |
-| L3  (L3a + L3b)            | L4 + L5                |
-| L4                         | L6                     |
-| G1                         | G2                     |
-| G2                         | G10                    |
-| S7                         | S7 (new op)            |
-| L8                         | L8 (new op)            |
+|:--------------------------:|:---------------------:|
+| S1                         | S1                    |
+| S2                         | S5                    |
+| S3                         | S6                    |
+| L1                         | L1                    |
+| L2                         | L2                    |
+| L3  (L3a + L3b)            | L4 + L5               |
+| L4                         | L6                    |
+| G1                         | G1                    |
+| G2                         | G2                    |
+| S7                         | S7 (new op)           |
+| L8                         | L8 (new op)           |
 
 
 Here is a table briefly describing each mutation operator: 
 
 | operator name in μgie | description                                                                        |
-|:----------------------:|:----------------------------------------------------------------------------------:|
-| S1                     | Swap any two declarations                                                          |
-| S5                     | Split a procedure definition into declaration and implementation                   |
-| S6                     | Move any declaration into a separate file (and call Boogie on both files)          |
-| L1                     | Swap any two *local* variable declarations                                         |
-| L2                     | Split a declaration of multiple variables into multiple declarations               |
-| L4 + L5                | Join any two pre-/postconditions into a conjunctive one                            |
-| G2                     | Add `true` as pre-/postcondition, intermediate assertion, or loop invariant clause |
-| G10                    | Remove a trigger annotation                                                        |
-| S7                     | Add axiom to pre-condition                                                         |
-| L8                     | Negate `if` condition and flip its two branches                                    |
+|:---------------------:|:----------------------------------------------------------------------------------:|
+| S1                    | Swap any two declarations                                                          |
+| S5                    | Split a procedure definition into declaration and implementation                   |
+| S6                    | Move any declaration into a separate file (and call Boogie on both files)          |
+| L1                    | Swap any two *local* variable declarations                                         |
+| L2                    | Split a declaration of multiple variables into multiple declarations               |
+| L4 + L5               | Join any two pre-/postconditions into a conjunctive one                            |
+| G1                    | Add `true` as pre-/postcondition, intermediate assertion, or loop invariant clause |
+| G2                    | Remove a trigger annotation                                                        |
+| S7                    | Add axiom to pre-condition                                                         |
+| L8                    | Negate `if` condition and flip its two branches                                    |
 
 
 ## Headers
