@@ -311,6 +311,8 @@ fromLiteral (Pos _ (Literal v)) = v
 fromLiteral (Pos _ _) = error "fromLiteral is called on a non-literal expr"
 
 
+
+-- makeLenses ''Program
 {-  Prisms: this part must be at the end of code -}
 makePrisms ''BareDecl
 makePrisms ''Program

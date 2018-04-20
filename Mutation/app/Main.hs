@@ -116,12 +116,12 @@ getMut (Program decls _) "S7" = do
   from <- randomPick (length decls - 1)
   to <- randomPick (length decls - 1)  
   return $ s7 (from, to)
+getMut (Program decls _) "G1" = do
+  r <- randomPick (length decls - 1)
+  return $ g1 r
 getMut (Program decls _) "G2" = do
   r <- randomPick (length decls - 1)
   return $ g2 r
-getMut (Program decls _) "G10" = do
-  r <- randomPick (length decls - 1)
-  return $ g10 r
 getMut (Program decls _) "L1" = do
   from <- randomPick (length decls - 1)
   -- to <- randomPick (length decls - 1)

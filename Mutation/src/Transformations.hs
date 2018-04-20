@@ -1,4 +1,4 @@
-{-# LANGUAGE OverloadedStrings #-}
+{-# LANGUAGE OverloadedStrings, FlexibleContexts #-}
 {-| 
 Module      : μgie Transformations
 Description : collection of transformations, no randomness 
@@ -36,12 +36,17 @@ s1 (from, to) = Trans "S1" (\p -> [swapDecl p (from, to)])
 s5 = Trans "S5" (\p -> [decoupleProcedures p])
 s6 i = Trans "S6" (\p -> let (a, b) = (splitProgram i p) in [a, b])
 s7 (wa, wp) = Trans "S7" (\p -> [addAxiomToPrecond p (wa, wp)])
-g2  i = Trans "G2"  (\p -> [addTruth p i])
-g10 i = Trans "G10" (\p -> [removeTriggers p i])
+g1  i = Trans "G1"  (\p -> [addTruth p i])
+g2 i = Trans "G2" (\p -> [removeTriggers p i])
 
 {- local ones -}
--- see below 
-
+l1 whichB (from, to) = Trans "L1" (\p -> [whichBody p whichB swapLocalVar'])
+  where swapLocalVar' b = swapLocalVar b (from, to)
+l2 whichB = Trans "L2" (\p -> [whichBody p whichB multiLocalDecl])
+l4 i = Trans "L4" (\p -> [andPreconds p i])
+l5 i = Trans "L5" (\p -> [andPostconds p i])
+l6 (from, to) = Trans "L6" (\p -> [swapContracts p (from, to)])
+l8 i = Trans "L8" (\p -> [whichBody p i (flip flipIfinBody i)])
 
 
 
@@ -131,17 +136,29 @@ addTruth p@(Program decls com) whichProc
 {- G10 [Incomplete] -}
 -- [Incomplete] as `whichAxiom` and `whichProcedure` are not currently in use 
 removeTriggers :: Program -> Int -> Program
-removeTriggers p@(Program decls com) whichProc = Program decls' com 
+removeTriggers p@(Program decls com) n = Program decls' com 
   where decls' = (map (fmap $
                        (over _AxiomDecl (fmap reTriggers))
                        . (over _FunctionDecl (id))
                       )) decls
+--   where decls' = map (fmap (over (_AxiomDecl) (fmap reTriggers))) decls
+
+
+_withTrigger :: Prism' BareExpression BareExpression
+_withTrigger = prism id $ \ e ->
+  case e of
+    Quantified [] qop typVars boundVars exp -> Left e
+    Quantified ts qop typVars boundVars exp -> Right e    
+    _ -> Left e
 
 reTriggers :: BareExpression -> BareExpression
 reTriggers = over _Quantified (\t -> t & (_1 %~ (\_ -> [])))
 {- G10 -}
 
-
+whAxiom :: Program -> Int -> (Expression -> Expression) -> Program 
+whAxiom p@(Program decls com) n expTrans = Program decls' com
+  where axoimsWithTrigger = map (preview _AxiomDecl . node) decls
+        decls' = decls
 
 {- Local Transformations : working on Body -}
 whichBody :: Program -> Int -> (Body -> Body) -> Program 
@@ -152,15 +169,6 @@ whichBody p@(Program decls com) n bodyTrans = Program decls' com
                               Nothing -> Nothing -- TODO this would not cause any update! 
                               Just b -> Just $ bodyTrans b))
 
-l1 whichB (from, to) = Trans "L1" (\p -> [whichBody p whichB swapLocalVar'])
-  where swapLocalVar' b = swapLocalVar b (from, to)
-
-l2 whichB = Trans "L2" (\p -> [whichBody p whichB multiLocalDecl])
-
-l4 i = Trans "L4" (\p -> [andPreconds p i])
-l5 i = Trans "L5" (\p -> [andPostconds p i])
-l6 (from, to) = Trans "L6" (\p -> [swapContracts p (from, to)])
-l8 i = Trans "L8" (\p -> [whichBody p i (flip flipIfinBody i)])
 
 {- L1 -}
 swapLocalVar :: Body -> (Int, Int) -> Body

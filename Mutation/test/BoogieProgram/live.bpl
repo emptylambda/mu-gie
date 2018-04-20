@@ -10,7 +10,7 @@ axiom (forall x, y :int ::
 
 // (strict inc.) sortedness
 // if you know how to boogie-woogie
-axiom (forall j, k : int :: {a[j], a[k]} {a[j], a[k]}
+axiom (forall j, k : int :: {:never_pattern true} {a[j], a[k]} 
          0 <= j && j < k ==> a[j] < a[k]);
 
 procedure harray (i: int) returns (o: int)
@@ -19,3 +19,4 @@ procedure harray (i: int) returns (o: int)
 {
   o := hash(a[i+1]);
 }				
+

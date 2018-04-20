@@ -44,6 +44,10 @@ instance Show a => Show (Pos a) where
 
 instance Functor Pos where
     fmap f (Pos s a) = Pos s (f a)
+
+instance Applicative Pos where
+  pure = gen 
+  (Pos _ f) <*> (Pos p n) = Pos p (f n)
     
 -- | Attach position to a node    
 attachPos :: SourcePos -> a -> Pos a
