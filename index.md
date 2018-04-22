@@ -55,6 +55,7 @@ Here is a table briefly describing each mutation operator:
 | L1                    | Swap any two *local* variable declarations                                         |
 | L2                    | Split a declaration of multiple variables into multiple declarations               |
 | L4 + L5               | Join any two pre-/postconditions into a conjunctive one                            |
+| L6                    | Swap the oder of pre-/postconditions                                               |
 | G1                    | Add `true` as pre-/postcondition, intermediate assertion, or loop invariant clause |
 | G2                    | Remove trigger annotation                                                          |
 | S7                    | Add axiom to pre-condition                                                         |
