@@ -16,7 +16,7 @@ import Control.Lens.Tuple
 import Control.Applicative
 import Data.Maybe
 import Pretty 
-
+import Renaming
 
 data Trans = Trans {
   transName :: String,
@@ -114,13 +114,23 @@ addAxiomToPrecond p@(Program decls com) (whichAxiom, whichProcedure)
   | otherwise = Program decls' com 
   where axioms = catMaybes $ map (preview _AxiomDecl . node) decls
         procedures = catMaybes $ map (preview _ProcedureDecl . node) decls
-        decls' = (map (fmap $ over _ProcedureDecl (addAxiom axioms)) decls)
+        decls' = (map (fmap $ over _ProcedureDecl (addAxiom axiom)) decls)
+        axiom = axioms !! (whichAxiom `mod` (length axioms))
 
-addAxiom :: [Expression] ->
+addAxiom :: Expression ->
   (Id, [Id], [IdTypeWhere], [IdTypeWhere], [Contract], (Maybe Body)) ->
   (Id, [Id], [IdTypeWhere], [IdTypeWhere], [Contract], (Maybe Body)) 
-addAxiom [] t = t
-addAxiom (a:_as) t = t & (_5 %~ (\contracts -> contracts ++ [Requires False a]))
+addAxiom  a t = t & (_5 %~ (\contracts -> contracts ++ [Requires False a]))
+
+addAxioms :: [Expression] ->
+  (Id, [Id], [IdTypeWhere], [IdTypeWhere], [Contract], (Maybe Body)) ->
+  (Id, [Id], [IdTypeWhere], [IdTypeWhere], [Contract], (Maybe Body)) 
+addAxioms [] t = t
+addAxioms as t = t & (_5 %~ (\contracts -> contracts ++ [Requires False (head as)]))
+
+--   where a' = head as -- !! (n `mod` length(as)) -- prefixAxiom a
+
+
 {- S7 -}
 
 {- G2 [Incomplete] -}
@@ -130,19 +140,19 @@ addTruth p@(Program decls com) whichProc
   | null procedures = p 
   | otherwise = Program decls' com 
   where procedures = allProcs p 
-        decls' = (map (fmap $ over _ProcedureDecl (addAxiom truth)) decls)
+        decls' = (map (fmap $ over _ProcedureDecl (addAxioms truth)) decls)
         truth = [gen tt]
 {- G2 -}        
 {- G10 [Incomplete] -}
--- [Incomplete] as `whichAxiom` and `whichProcedure` are not currently in use 
 removeTriggers :: Program -> Int -> Program
 removeTriggers p@(Program decls com) n = Program decls' com 
-  where decls' = (map (fmap $
-                       (over _AxiomDecl (fmap reTriggers))
-                       . (over _FunctionDecl (id))
-                      )) decls
+  where decls' = over (ix n) (fmap $ (over _AxiomDecl (fmap reTriggers))) decls
 --   where decls' = map (fmap (over (_AxiomDecl) (fmap reTriggers))) decls
 
+removeNthTrigger :: Int -> [Expression] -> [Expression]
+removeNthTrigger n [] = []
+removeNthTrigger 0 (e1:es) = (fmap reTriggers e1):es
+removeNthTrigger n (e1:es) = e1 : (removeNthTrigger (n-1) es)
 
 _withTrigger :: Prism' BareExpression BareExpression
 _withTrigger = prism id $ \ e ->

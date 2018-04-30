@@ -28,6 +28,7 @@ library
                        Boogie.TypeChecker,
                        Transformations,
                        Pretty,
+                       Renaming,
                        Interface
 
   build-depends:       QuickCheck >= 2.9.2
