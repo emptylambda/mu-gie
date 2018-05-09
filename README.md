@@ -25,5 +25,7 @@ We include an example `config.json` under the `Mutation` directory, which only u
 ## Benchmark Mutants: 
 Our benchmarking seeds can be found under `/seeds`
 
+Directory [`experiments`](experiments/) includes the experimental data in CSV format.
+ 
 ## [μgie website](http://emptylambda.github.io/mu-gie/)
-Just in case you arrive here without seeing the intro webpage :) 
+Just in case you arrived here without seeing the intro webpage :) 
