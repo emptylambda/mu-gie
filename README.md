@@ -23,8 +23,6 @@ where `config.json` is a JSON configuration file that specifies:
 We include an example `config.json` under the `Mutation` directory, which only uses the "L8" mutation operator and generates 1 mutant with at most 10000 tries.
 
 ## Benchmark Mutants: 
-Our benchmarking seeds can be found under `/seeds`
-
 Directory [`experiments`](experiments/) includes the experimental data in CSV format.
  
 ## [μgie website](http://emptylambda.github.io/mu-gie/)
