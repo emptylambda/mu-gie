@@ -5,7 +5,8 @@ packages:
 - '.'
 
 # Packages to be pulled from upstream that are not in the resolver (e.g., acme-missiles-0.3)
-extra-deps: [quickspec-2]
+extra-deps: [quickspec-2,
+	    twee-lib-2.1.2]
 
 flags: {}
 

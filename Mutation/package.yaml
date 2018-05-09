@@ -36,6 +36,7 @@ executables:
     dependencies:
     - HaskellSandbox
     - quickspec >= 2
+    - twee-lib >= 2.1.2
 
 tests:
   HaskellSandbox-test:
