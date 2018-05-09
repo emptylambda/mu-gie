@@ -66,6 +66,3 @@ Here is a table briefly describing each mutation operator:
 Each mutant includes a header comment with information about 
 how the mutant was generated as a sequence of application of
 mutations operators to the original input Boogie program.
-
-## More details
-Read the [paper describing μgie](https://arxiv.org/abs/XXXX.XXXXX).
