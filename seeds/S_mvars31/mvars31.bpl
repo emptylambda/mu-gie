@@ -1,0 +1,69 @@
+
+procedure main() returns()
+{
+  var x001: int;
+  var x002: int;
+  var x003: int;
+  var x004: int;
+  var x005: int;
+  var x006: int;
+  var x007: int;
+  var x008: int;
+  var x009: int;
+  var x010: int;
+  var x011: int;
+  var x012: int;
+  var x013: int;
+  var x014: int;
+  var x015: int;
+  var x016: int;
+  var x017: int;
+  var x018: int;
+  var x019: int;
+  var x020: int;
+  var x021: int;
+  var x022: int;
+  var x023: int;
+  var x024: int;
+  var x025: int;
+  var x026: int;
+  var x027: int;
+  var x028: int;
+  var x029: int;
+  var x030: int;
+  var x031: int;
+
+  x001 := 1;
+  x002 := 1;
+  x003 := 1;
+  x004 := 1;
+  x005 := 1;
+  x006 := 1;
+  x007 := 1;
+  x008 := 1;
+  x009 := 1;
+  x010 := 1;
+  x011 := 1;
+  x012 := 1;
+  x013 := 1;
+  x014 := 1;
+  x015 := 1;
+  x016 := 1;
+  x017 := 1;
+  x018 := 1;
+  x019 := 1;
+  x020 := 1;
+  x021 := 1;
+  x022 := 1;
+  x023 := 1;
+  x024 := 1;
+  x025 := 1;
+  x026 := 1;
+  x027 := 1;
+  x028 := 1;
+  x029 := 1;
+  x030 := 1;
+  x031 := 1;
+
+  assert 31 == x001 + x002 + x003 + x004 + x005 + x006 + x007 + x008 + x009 + x010 + x011 + x012 + x013 + x014 + x015 + x016 + x017 + x018 + x019 + x020 + x021 + x022 + x023 + x024 + x025 + x026 + x027 + x028 + x029 + x030 + x031;
+}
