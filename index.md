@@ -22,13 +22,13 @@ where `config.json` is a JSON configuration file that specifies:
   
 We include an example `config.json` under the `Mutation` directory, which only uses the "L8" mutation operator and generates 1 mutant with at most 10000 tries.
 
-## Benchmark mutants
-We also include the two batches of mutants generated in our [experiments](https://chalmersuniversity.box.com/shared/static/5a1dvt1s0am5smx4u23oezuw6633hiuf.zip). 
+## Details and experiments
+Details about robustness testing, μgie, and an experimental evaluation are available in the paper [Robustness testing of intermediate verifiers](https://arxiv.org/abs/XXXX.XXXXX).
 
 
 ## Mutation operators
 ------------------
-The implementation of μgie includes more mutation operators than those described in the [paper](TO BE ADDED), and the operators' names are not the same as those used in the paper:
+The implementation of μgie includes more mutation operators than those described in the paper, and the operators' names are not the same as those used in the paper:
 
 | operator name in the paper | operator name in μgie |
 |:--------------------------:|:---------------------:|
@@ -37,12 +37,12 @@ The implementation of μgie includes more mutation operators than those describe
 | S3                         | S6                    |
 | L1                         | L1                    |
 | L2                         | L2                    |
-| L3  (L3a + L3b)            | L4 + L5               |
-| L4                         | L6                    |
+| L3                         | L4                    |
+| L4                         | L5                    |
+| L5                         | L6                    |
+| L6                         | L8                    |
 | G1                         | G1                    |
 | G2                         | G2                    |
-| S7                         | S7 (new op)           |
-| L8                         | L8 (new op)           |
 
 
 Here is a table briefly describing each mutation operator: 
@@ -54,12 +54,12 @@ Here is a table briefly describing each mutation operator:
 | S6                    | Move any declaration into a separate file (and call Boogie on both files)          |
 | L1                    | Swap any two *local* variable declarations                                         |
 | L2                    | Split a declaration of multiple variables into multiple declarations               |
-| L4 + L5               | Join any two pre-/postconditions into a conjunctive one                            |
+| L4                    | Join any two preconditions into a conjunctive one                                  |
+| L5                    | Join any two postconditions into a conjunctive one                                 |
 | L6                    | Swap the oder of pre-/postconditions                                               |
+| L8                    | Negate `if` condition and flip its two branches                                    |
 | G1                    | Add `true` as pre-/postcondition, intermediate assertion, or loop invariant clause |
 | G2                    | Remove trigger annotation                                                          |
-| S7                    | Add axiom to pre-condition                                                         |
-| L8                    | Negate `if` condition and flip its two branches                                    |
 
 
 ## Headers
@@ -68,4 +68,4 @@ how the mutant was generated as a sequence of application of
 mutations operators to the original input Boogie program.
 
 ## More details
-Read the [paper describing μgie](TO BE ADDED).
+Read the [paper describing μgie](https://arxiv.org/abs/XXXX.XXXXX).
