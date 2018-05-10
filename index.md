@@ -23,7 +23,7 @@ where `config.json` is a JSON configuration file that specifies:
 We include an example `config.json` under the `Mutation` directory, which only uses the "L8" mutation operator and generates 1 mutant with at most 10000 tries.
 
 ## Details and experiments
-Details about robustness testing, μgie, and an experimental evaluation are available in the paper [Robustness testing of intermediate verifiers](https://arxiv.org/abs/XXXX.XXXXX).
+Details about robustness testing, μgie, and an experimental evaluation are available in the paper [Robustness testing of intermediate verifiers](http://arxiv.org/abs/1805.03296).
 
 
 ## Mutation operators
